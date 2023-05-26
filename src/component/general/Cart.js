@@ -13,6 +13,10 @@ const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalAmount);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const userAddress = useSelector((state) => state.ui.shippingInfo.address);
+  const userPhoneNumber = useSelector(
+    (state) => state.ui.shippingInfo.phoneNumber
+  );
   const isAuth = useSelector((state) => state.ui.isAuth);
   const [notification, setNotification] = useState(null);
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -25,7 +29,8 @@ const Cart = () => {
       setNotification("Please login before checking out");
       return;
     }
-    dispatch(updateOrderList({ address, phoneNumber }));
+    dispatch(updateOrderList());
+    console.log(address, phoneNumber);
     dispatch(cartActions.clearCart());
     dispatch(uiActions.setDisplayCart());
     dispatch(getOrderListFromFirestore());
@@ -33,6 +38,18 @@ const Cart = () => {
   const continueShopping = () => {
     dispatch(uiActions.setDisplayCart());
     navigate("/");
+  };
+  const loginHandler = () => {
+    navigate("/auth?mode=signup");
+    dispatch(uiActions.setDisplayCart());
+  };
+  const inputAddressHandler = (address) => {
+    setAddess(address);
+    dispatch(uiActions.setShippingAddress({ address, phoneNumber }));
+  };
+  const inputPhoneNumberHandler = (phoneNumber) => {
+    setPhoneNumber(phoneNumber);
+    dispatch(uiActions.setShippingAddress({ phoneNumber, address }));
   };
   return (
     <div className="fixed z-30 h-5/6 w-2/3 bg-[#ffffff] top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 text-2xl grid-rows-4 grid grid-cols-7">
@@ -100,14 +117,16 @@ const Cart = () => {
               className="w-full placeholder:text-base focus:ring-0 focus:outline-none"
               rows={4}
               spellCheck={false}
-              onChange={(e) => setAddess(e.target.value)}
+              onChange={(e) => inputAddressHandler(e.target.value)}
+              defaultValue={userAddress}
             ></textarea>
             <p className="text-base">Phone number:</p>
             <input
               placeholder="Phone number"
-              onChange={(e) => setPhoneNumber(e.target.value)}
+              onChange={(e) => inputPhoneNumberHandler(e.target.value)}
               required
               className="text-base w-full"
+              value={userPhoneNumber}
             ></input>
             {hasItems ? (
               <button
@@ -119,7 +138,17 @@ const Cart = () => {
             ) : (
               <></>
             )}
-            {notification && <p>{notification}</p>}
+            {notification && (
+              <div>
+                <p>{notification}</p>
+                <button
+                  className="self-center mt-4 font-semibold bg-slate-400 hover:bg-indigo-600 duration-300 py-3 text-xl w-full"
+                  onClick={loginHandler}
+                >
+                  LOGIN
+                </button>
+              </div>
+            )}
           </form>
         </div>
       </div>

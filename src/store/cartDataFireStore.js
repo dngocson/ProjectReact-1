@@ -63,13 +63,13 @@ export const getCartDataFromFireStore = () => {
 ///////////////////// Order List
 const orderListCollection = collection(db, "OrderList");
 ///////////////////// Send
-export const updateOrderList = ({ address, phoneNumber }) => {
+export const updateOrderList = () => {
   return async (dispatch, getState) => {
     const state = getState();
     const { totalAmount, totalQuantity } = state.cart;
     const cartItems = state.cart.items || [];
     const currentId = state.ui.uid;
-    const q = query(orderListCollection, where("uid", "==", currentId));
+    const { address, phoneNumber } = state.ui.shippingInfo;
     try {
       await addDoc(orderListCollection, {
         items: cartItems,
