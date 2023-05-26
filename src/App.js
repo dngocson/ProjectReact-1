@@ -17,6 +17,7 @@ import {
 } from "./store/cartDataFireStore";
 import ErrorPage from "./pages/Error";
 import Product from "./pages/Product";
+import { cartActions } from "./store/cart-slice";
 let isInitial = true;
 const router = createBrowserRouter([
   {

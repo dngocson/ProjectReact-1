@@ -52,8 +52,26 @@ export const getCartDataFromFireStore = () => {
     try {
       const querySnapshot = await getDocs(q);
       const [responseData] = querySnapshot.docs.map((doc) => doc.data());
-      const { items, totalAmount, totalQuantity } = responseData;
+      let { items, totalAmount, totalQuantity } = responseData;
+      // const {  backupItems, backupTotalAmout, backupTotalQuantity } =
+      //   state.cart.backupCart;
+      ////////////////////////////////// Get backup Cart
+      const backupItems = state.cart.backupCart.items || [];
+      const backupTotalAmout = state.cart.backupCart.totalAmount || 0;
+      const backupTotalQuantity = state.cart.backupCart.totalQuantity || 0;
+
+      //////////////////////////////// Combine Cart
+      const newItem = backupItems.concat(items);
+      items = newItem;
+      totalQuantity = totalQuantity + backupTotalQuantity;
+      totalAmount = totalAmount + backupTotalAmout;
+
+      ///////////////////////////////
+      console.log(backupItems, backupTotalAmout, backupTotalQuantity);
+      console.log(items, totalQuantity, totalAmount);
+      // console.log(state.cart.backupCart);
       dispatch(cartActions.resumeCart({ items, totalQuantity, totalAmount }));
+      // dispatch(cartActions.resumeCart({ backupItems, backupTotalAmout, backupTotalQuantity }));
     } catch (err) {
       console.error(err);
     }

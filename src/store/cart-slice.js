@@ -5,6 +5,7 @@ const initialState = {
   totalQuantity: 0,
   totalAmount: 0,
   changed: false,
+  backupCart: {},
 };
 const cartSlice = createSlice({
   name: "cart",
@@ -60,6 +61,13 @@ const cartSlice = createSlice({
       state.items = action.payload.items;
       state.totalQuantity = action.payload.totalQuantity;
       state.totalAmount = action.payload.totalAmount;
+    },
+    backupExistingCart(state, action) {
+      state.backupCart = {
+        items: state.items,
+        totalQuantity: state.totalQuantity,
+        totalAmount: state.totalAmount,
+      };
     },
   },
 });
