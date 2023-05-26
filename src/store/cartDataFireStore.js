@@ -52,8 +52,7 @@ export const getCartDataFromFireStore = () => {
     try {
       const querySnapshot = await getDocs(q);
       const [responseData] = querySnapshot.docs.map((doc) => doc.data());
-      const { totalAmount, totalQuantity } = responseData || 0;
-      const { items } = responseData || [];
+      const { items, totalAmount, totalQuantity } = responseData;
       dispatch(cartActions.resumeCart({ items, totalQuantity, totalAmount }));
     } catch (err) {
       console.error(err);
