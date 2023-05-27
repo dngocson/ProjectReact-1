@@ -8,20 +8,14 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigate, useNavigation, useActionData } from "react-router-dom";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { cartActions } from "../store/cart-slice";
+
 function Authentication() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const navigation = useNavigation();
   const isSummiting = navigation.state === "submitting";
   const errors = useActionData();
   ////////////
-  useEffect(() => {
-    dispatch(cartActions.backupExistingCart());
-  }, []);
-  ////////////////
+
   const signInWithGoogleHandler = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);

@@ -53,25 +53,24 @@ export const getCartDataFromFireStore = () => {
       const querySnapshot = await getDocs(q);
       const [responseData] = querySnapshot.docs.map((doc) => doc.data());
       let { items, totalAmount, totalQuantity } = responseData;
-      // const {  backupItems, backupTotalAmout, backupTotalQuantity } =
-      //   state.cart.backupCart;
-      ////////////////////////////////// Get backup Cart
-      const backupItems = state.cart.backupCart.items || [];
-      const backupTotalAmout = state.cart.backupCart.totalAmount || 0;
-      const backupTotalQuantity = state.cart.backupCart.totalQuantity || 0;
 
-      //////////////////////////////// Combine Cart
-      const newItem = backupItems.concat(items);
-      items = newItem;
-      totalQuantity = totalQuantity + backupTotalQuantity;
-      totalAmount = totalAmount + backupTotalAmout;
+      ////////////////////////////////// Get backup Cart
+      if (localStorage.getItem("backupCart") === null) {
+        return;
+      } else {
+        let data = JSON.parse(localStorage.getItem("backupCart"));
+        console.log(data);
+        const backupCart = data.items;
+        const backupTotalAmount = data.totalAmount;
+        const backupTotalQuantity = data.totalQuantity;
+        //////////////////////////////// Combine Cart
+        items = backupCart.concat(items);
+        totalAmount += backupTotalAmount;
+        totalQuantity += backupTotalQuantity;
+      }
 
       ///////////////////////////////
-      console.log(backupItems, backupTotalAmout, backupTotalQuantity);
-      console.log(items, totalQuantity, totalAmount);
-      // console.log(state.cart.backupCart);
       dispatch(cartActions.resumeCart({ items, totalQuantity, totalAmount }));
-      // dispatch(cartActions.resumeCart({ backupItems, backupTotalAmout, backupTotalQuantity }));
     } catch (err) {
       console.error(err);
     }
@@ -81,13 +80,12 @@ export const getCartDataFromFireStore = () => {
 ///////////////////// Order List
 const orderListCollection = collection(db, "OrderList");
 ///////////////////// Send
-export const updateOrderList = () => {
+export const updateOrderList = ({ address, phoneNumber }) => {
   return async (dispatch, getState) => {
     const state = getState();
     const { totalAmount, totalQuantity } = state.cart;
     const cartItems = state.cart.items || [];
     const currentId = state.ui.uid;
-    const { address, phoneNumber } = state.ui.shippingInfo;
     try {
       await addDoc(orderListCollection, {
         items: cartItems,

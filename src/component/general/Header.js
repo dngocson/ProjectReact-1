@@ -25,7 +25,10 @@ function Header() {
         cookies.remove("auth-token");
         dispatch(cartActions.clearCart());
         dispatch(uiActions.setOrderlist(null));
-        dispatch(uiActions.clearShippingAddress());
+        localStorage.setItem(
+          "shippingAddress",
+          JSON.stringify({ phoneNumber: "", address: "" })
+        );
         navigate("/auth");
       }
     } catch (err) {

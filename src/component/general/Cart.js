@@ -7,30 +7,30 @@ import { cartActions } from "../../store/cart-slice";
 import { uiActions } from "../../store/ui-slice";
 import { getOrderListFromFirestore } from "../../store/cartDataFireStore";
 import { BsArrowBarLeft } from "react-icons/bs";
-import { useState } from "react";
+import { useState, useRef } from "react";
 const Cart = () => {
   const navigate = useNavigate();
   const cartItems = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalAmount);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
-  const userAddress = useSelector((state) => state.ui.shippingInfo.address);
-  const userPhoneNumber = useSelector(
-    (state) => state.ui.shippingInfo.phoneNumber
-  );
   const isAuth = useSelector((state) => state.ui.isAuth);
   const [notification, setNotification] = useState(null);
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [address, setAddess] = useState("");
   const hasItems = cartItems.length > 0;
   const dispatch = useDispatch();
+  const addressRef = useRef();
+  const phoneNumberRef = useRef();
   const sendDataHandler = (e) => {
     e.preventDefault();
     if (!isAuth) {
       setNotification("Please login before checking out");
       return;
     }
-    dispatch(updateOrderList());
-    console.log(address, phoneNumber);
+    dispatch(
+      updateOrderList({
+        address: addressRef.current.value,
+        phoneNumber: phoneNumberRef.current.value,
+      })
+    );
     dispatch(cartActions.clearCart());
     dispatch(uiActions.setDisplayCart());
     dispatch(getOrderListFromFirestore());
@@ -44,13 +44,28 @@ const Cart = () => {
     dispatch(uiActions.setDisplayCart());
   };
   const inputAddressHandler = (address) => {
-    setAddess(address);
-    dispatch(uiActions.setShippingAddress({ address, phoneNumber }));
+    let shippingAddress = JSON.parse(
+      localStorage.getItem("shippingAddress")
+    ) || { address: "", phoneNumber: "" };
+
+    localStorage.setItem(
+      "shippingAddress",
+      JSON.stringify({ ...shippingAddress, address })
+    );
   };
   const inputPhoneNumberHandler = (phoneNumber) => {
-    setPhoneNumber(phoneNumber);
-    dispatch(uiActions.setShippingAddress({ phoneNumber, address }));
+    let shippingAddress = JSON.parse(
+      localStorage.getItem("shippingAddress")
+    ) || { address: "", phoneNumber: "" };
+    localStorage.setItem(
+      "shippingAddress",
+      JSON.stringify({ ...shippingAddress, phoneNumber })
+    );
   };
+  const data = JSON.parse(localStorage.getItem("shippingAddress"));
+  const addressDefaultValue = data.address.toString() || "";
+  const phoneNumberDefaultValue = data.phoneNumber.toString() || "";
+
   return (
     <div className="fixed z-30 h-5/6 w-2/3 bg-[#ffffff] top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 text-2xl grid-rows-4 grid grid-cols-7">
       <div className="col-span-5 row-span-3">
@@ -112,22 +127,24 @@ const Cart = () => {
           <form onSubmit={sendDataHandler} className="flex flex-col">
             <textarea
               type="text"
+              ref={addressRef}
               required
               placeholder="Your address"
               className="w-full placeholder:text-base focus:ring-0 focus:outline-none"
               rows={4}
               spellCheck={false}
               onChange={(e) => inputAddressHandler(e.target.value)}
-              defaultValue={userAddress}
+              defaultValue={addressDefaultValue}
             ></textarea>
             <p className="text-base">Phone number:</p>
-            <input
+            <textarea
+              ref={phoneNumberRef}
               placeholder="Phone number"
               onChange={(e) => inputPhoneNumberHandler(e.target.value)}
               required
               className="text-base w-full"
-              value={userPhoneNumber}
-            ></input>
+              defaultValue={phoneNumberDefaultValue}
+            ></textarea>
             {hasItems ? (
               <button
                 className="self-center mt-4 font-semibold bg-slate-400 hover:bg-indigo-600 duration-300 py-3 text-xl w-full"
@@ -157,3 +174,38 @@ const Cart = () => {
 };
 
 export default Cart;
+///////////////////////Backup Cart//////////////
+export const backupCart = () => {
+  return (dispatch, getState) => {
+    const state = getState();
+    const { totalAmount, totalQuantity } = state.cart;
+    const cartItems = state.cart.items || [];
+    localStorage.setItem(
+      "backupCart",
+      JSON.stringify({ items: cartItems, totalAmount, totalQuantity })
+    );
+  };
+};
+////////////////// When user not login, load Cart from local Storage else from Firebase.
+export const loadCartWhenNotLoggin = () => {
+  return (dispatch, getState) => {
+    //////  store Cart data from local storage;
+    let data, items, totalQuantity, totalAmount;
+    //////// check user login
+    const state = getState();
+    /////// get Cart data from localStorage
+    if (localStorage.getItem("backupCart") === null) {
+      return;
+    } else {
+      data = JSON.parse(localStorage.getItem("backupCart"));
+      items = data.items;
+      totalQuantity = data.totalQuantity;
+      totalAmount = data.totalAmount;
+      console.log(items, totalQuantity, totalAmount);
+    }
+    const isAuth = state.ui.isAuth;
+    if (!isAuth) {
+      dispatch(cartActions.resumeCart({ items, totalQuantity, totalAmount }));
+    }
+  };
+};
