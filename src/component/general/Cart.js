@@ -63,8 +63,8 @@ const Cart = () => {
     );
   };
   const data = JSON.parse(localStorage.getItem("shippingAddress"));
-  const addressDefaultValue = data.address.toString() || "";
-  const phoneNumberDefaultValue = data.phoneNumber.toString() || "";
+  const addressDefaultValue = data?.address?.toString() || "";
+  const phoneNumberDefaultValue = data?.phoneNumber?.toString() || "";
 
   return (
     <div className="fixed z-30 h-5/6 w-2/3 bg-[#ffffff] top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 text-2xl grid-rows-4 grid grid-cols-7">
