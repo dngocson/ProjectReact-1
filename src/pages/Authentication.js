@@ -15,7 +15,7 @@ function Authentication() {
   const errors = useActionData();
   const signInWithGoogleHandler = async () => {
     try {
-      const result = await signInWithPopup(auth, googleProvider);
+      await signInWithPopup(auth, googleProvider);
       navigate("/");
     } catch (error) {
       console.error(error.message);
@@ -50,30 +50,31 @@ export async function action({ request }) {
   const authData = {
     email: data.get("email"),
     password: data.get("password"),
+    confirmPassword: data.get("confirmPassword"),
   };
   // validate
   if (typeof authData.password !== "string" || authData.password.length < 6) {
     errors.password = "Password must be > 6 characters";
   }
-  // return data if we have errors
+
+  if (mode === "signup" && authData.password !== authData.confirmPassword) {
+    errors.repassword = "confirm password missmatch!";
+  }
   if (Object.keys(errors).length) {
+    // return data if we have errors
     return errors;
   }
 
   try {
     if (mode === "signup") {
-      const response = await createUserWithEmailAndPassword(
+      await createUserWithEmailAndPassword(
         auth,
         authData.email,
         authData.password
       );
     }
     if (mode === "login") {
-      const response = await signInWithEmailAndPassword(
-        auth,
-        authData.email,
-        authData.password
-      );
+      await signInWithEmailAndPassword(auth, authData.email, authData.password);
     }
     return redirect("/");
   } catch (error) {

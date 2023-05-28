@@ -26,7 +26,7 @@ function Header() {
         dispatch(cartActions.clearCart());
         dispatch(uiActions.setOrderlist(null));
         dispatch(uiActions.clearShippingAddress());
-        navigate("/auth");
+        navigate("/auth?mode=login");
       }
     } catch (err) {
       console.error(err);
