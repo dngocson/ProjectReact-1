@@ -19,6 +19,7 @@ export const sendCartDataToFireStore = () => {
     const cartItems = state.cart.items || [];
     const currentId = state.ui.uid;
     const q = query(cartCollection, where("uid", "==", currentId));
+    const shippingAddress = state.ui.shippingInfo;
     try {
       const querySnapshot = await getDocs(q);
       if (querySnapshot.empty) {
@@ -27,6 +28,7 @@ export const sendCartDataToFireStore = () => {
           totalAmount: Number(totalAmount),
           totalQuantity,
           uid: currentId,
+          shippingInfo: shippingAddress,
         });
       } else {
         querySnapshot.forEach((doc) => {
@@ -35,6 +37,7 @@ export const sendCartDataToFireStore = () => {
             totalAmount: Number(totalAmount),
             totalQuantity,
             uid: currentId,
+            shippingInfo: shippingAddress,
           });
         });
       }
@@ -52,25 +55,10 @@ export const getCartDataFromFireStore = () => {
     try {
       const querySnapshot = await getDocs(q);
       const [responseData] = querySnapshot.docs.map((doc) => doc.data());
-      let { items, totalAmount, totalQuantity } = responseData;
-
-      ////////////////////////////////// Get backup Cart
-      if (localStorage.getItem("backupCart") === null) {
-        return;
-      } else {
-        let data = JSON.parse(localStorage.getItem("backupCart"));
-        console.log(data);
-        const backupCart = data.items;
-        const backupTotalAmount = data.totalAmount;
-        const backupTotalQuantity = data.totalQuantity;
-        //////////////////////////////// Combine Cart
-        items = backupCart.concat(items);
-        totalAmount += backupTotalAmount;
-        totalQuantity += backupTotalQuantity;
-      }
-
-      ///////////////////////////////
+      const { shippingInfo, items, totalAmount, totalQuantity } = responseData;
+      console.log(shippingInfo);
       dispatch(cartActions.resumeCart({ items, totalQuantity, totalAmount }));
+      dispatch(uiActions.resumeShippingInfo(shippingInfo));
     } catch (err) {
       console.error(err);
     }
@@ -80,12 +68,13 @@ export const getCartDataFromFireStore = () => {
 ///////////////////// Order List
 const orderListCollection = collection(db, "OrderList");
 ///////////////////// Send
-export const updateOrderList = ({ address, phoneNumber }) => {
+export const updateOrderList = () => {
   return async (dispatch, getState) => {
     const state = getState();
     const { totalAmount, totalQuantity } = state.cart;
     const cartItems = state.cart.items || [];
     const currentId = state.ui.uid;
+    const { address, phoneNumber } = state.ui.shippingInfo;
     try {
       await addDoc(orderListCollection, {
         items: cartItems,

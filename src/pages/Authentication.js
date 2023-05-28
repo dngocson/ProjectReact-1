@@ -8,14 +8,11 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigate, useNavigation, useActionData } from "react-router-dom";
-
 function Authentication() {
   const navigate = useNavigate();
   const navigation = useNavigation();
   const isSummiting = navigation.state === "submitting";
   const errors = useActionData();
-  ////////////
-
   const signInWithGoogleHandler = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);

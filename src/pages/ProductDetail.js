@@ -5,10 +5,13 @@ import { cartActions } from "../store/cart-slice";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom/dist";
 import "react-toastify/dist/ReactToastify.css";
 const ProductDetail = () => {
   const params = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isAuth = useSelector((state) => state.ui.isAuth);
   const id = params.productId;
   const listofProduct = useSelector((state) => state.shop.shopItem);
   const [currentProduct = []] = listofProduct.filter(
@@ -16,8 +19,11 @@ const ProductDetail = () => {
   );
   const rating = Math.floor(currentProduct?.rating?.rate) || 5;
   const addtoCartHandler = () => {
+    if (!isAuth) {
+      navigate("/auth?mode=signup");
+      return;
+    }
     toast.success("Item added to cart", { theme: "colored" });
-
     dispatch(
       cartActions.addItemtoCart({
         id: currentProduct.id,

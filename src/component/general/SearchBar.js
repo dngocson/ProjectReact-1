@@ -19,7 +19,6 @@ function SearchBar() {
   const clickTextHandler = (title) => {
     setValue(title);
     const [item] = shopItem.filter((item) => item.title === title);
-    console.log(title);
     if (!item) return;
     navigate(`/product/detail/${item.id}`);
     setValue("");

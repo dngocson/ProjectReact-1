@@ -17,8 +17,6 @@ import {
 } from "./store/cartDataFireStore";
 import ErrorPage from "./pages/Error";
 import Product from "./pages/Product";
-import { backupCart } from "./component/general/Cart";
-import { loadCartWhenNotLoggin } from "./component/general/Cart";
 let isInitial = true;
 const router = createBrowserRouter([
   {
@@ -61,20 +59,19 @@ function App() {
   useEffect(() => {
     dispatch(fetchShopItem());
     dispatch(resumeAuthstate());
-    dispatch(loadCartWhenNotLoggin());
   }, [dispatch]);
   ///////////////// Send cart data to Firestore
   const cart = useSelector((state) => state.cart);
+  const ui = useSelector((state) => state.ui);
   useEffect(() => {
     if (isInitial) {
       isInitial = false;
       return;
     }
-    if (cart.changed) {
+    if (cart.changed || ui) {
       dispatch(sendCartDataToFireStore());
-      dispatch(backupCart());
     }
-  }, [cart, dispatch]);
+  }, [cart, dispatch, ui]);
   /////////////////// Get cart data from Firestore
   const userLogin = useSelector((state) => state.ui.isAuth);
   useEffect(() => {

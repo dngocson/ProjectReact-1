@@ -2,10 +2,18 @@ import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
 import { ToastContainer, toast } from "react-toastify";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom/dist";
 import "react-toastify/dist/ReactToastify.css";
 const Product = ({ title, price, id, image }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isAuth = useSelector((state) => state.ui.isAuth);
   const addItemtoCart = () => {
+    if (!isAuth) {
+      navigate("auth?mode=signup");
+      return;
+    }
     toast.success("Item added to cart", { theme: "colored" });
     dispatch(cartActions.addItemtoCart({ id, price, title, image }));
   };
