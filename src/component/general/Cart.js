@@ -15,6 +15,8 @@ const Cart = () => {
   const totalPrice = useSelector((state) => state.cart.totalAmount);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const userAddress = useSelector((state) => state.ui.shippingInfo.address);
+  const [city, setCity] = useState("");
+  const [district, setDistrict] = useState("");
   const userPhoneNumber = useSelector(
     (state) => state.ui.shippingInfo.phoneNumber
   );
@@ -48,11 +50,13 @@ const Cart = () => {
   };
 
   const inputCityHandler = ({ city, district }) => {
+    setCity(city);
     dispatch(
       uiActions.setShippingAddress({ phoneNumber, address, city, district })
     );
   };
   const inputDistrictHandler = ({ city, district }) => {
+    setDistrict(district);
     dispatch(
       uiActions.setShippingAddress({ phoneNumber, address, city, district })
     );

@@ -130,6 +130,7 @@ function CityDistrictForm({ setCity, setDistrict }) {
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const handleCityChange = (event) => {
     setSelectedCity(event.target.value);
+    setSelectedDistrict("");
   };
   const handleDistrictChange = (event) => {
     setSelectedDistrict(event.target.value);
