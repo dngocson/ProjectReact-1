@@ -13,13 +13,13 @@ const AuthForm = ({ isSummiting, errors }) => {
     text = "Submitting";
   }
   return (
-    <div className="p-4 bg-white  mx-auto">
-      <Form method="post" className="space-y-4 flex items-center flex-col">
-        <h3 className="text-lg font-semibold self-center">
+    <div className="mx-auto  bg-white p-4 ">
+      <Form method="post" className=" flex flex-col items-center space-y-4">
+        <h3 className="self-center text-lg font-semibold">
           {isLogin ? "Sign In to Myshop" : "Create a new account"}
         </h3>
         <div>
-          <label htmlFor="email" className="block font-medium mb-1">
+          <label htmlFor="email" className="mb-1 block font-medium">
             your email
           </label>
           <input
@@ -28,12 +28,12 @@ const AuthForm = ({ isSummiting, errors }) => {
             name="email"
             placeholder="email"
             required
-            className="border rounded px-2 py-1 w-full focus:ring focus:border-blue-300"
+            className="w-full rounded border px-2 py-1 focus:border-blue-300 focus:ring"
           />
           <p>{errors?.message && <span>{errors.message}</span>}</p>
         </div>
         <div>
-          <label htmlFor="password" className="block font-medium mb-1">
+          <label htmlFor="password" className="mb-1 block font-medium">
             your password
           </label>
           <input
@@ -42,14 +42,14 @@ const AuthForm = ({ isSummiting, errors }) => {
             name="password"
             placeholder="password"
             required
-            className="border rounded px-2 py-1 w-full focus:ring focus:border-blue-300"
+            className="w-full rounded border px-2 py-1 focus:border-blue-300 focus:ring"
           />
           <p>{errors?.password && <span>{errors.password}</span>}</p>
           {!isLogin && (
             <div>
               <label
                 htmlFor="confirmPassword"
-                className="block font-medium mb-1"
+                className="mb-1 block font-medium"
               >
                 Password Confirmation
               </label>
@@ -59,7 +59,7 @@ const AuthForm = ({ isSummiting, errors }) => {
                 name="confirmPassword"
                 placeholder="confirm password"
                 required
-                className="border rounded px-2 py-1 w-full focus:ring focus:border-blue-300"
+                className="w-full rounded border px-2 py-1 focus:border-blue-300 focus:ring"
               />
               <p>{errors?.repassword && <span>{errors.repassword}</span>}</p>
             </div>
@@ -68,13 +68,13 @@ const AuthForm = ({ isSummiting, errors }) => {
         <div className="self-end">
           <button
             disabled={isSummiting}
-            className="bg-yellow-300  text-white px-4 py-2 rounded hover:bg-yellow-400"
+            className="rounded  bg-yellow-300 px-4 py-2 text-white hover:bg-yellow-400"
           >
             {text}
           </button>
         </div>
       </Form>
-      <div className="bg-yellow-500 p-2 m-2">
+      <div className="m-2 bg-yellow-500 p-2">
         {isLogin && (
           <p className="text-2xl">
             Not a members?

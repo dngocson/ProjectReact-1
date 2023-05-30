@@ -56,7 +56,6 @@ export const getCartDataFromFireStore = () => {
       const querySnapshot = await getDocs(q);
       const [responseData] = querySnapshot.docs.map((doc) => doc.data());
       const { shippingInfo, items, totalAmount, totalQuantity } = responseData;
-      console.log(shippingInfo);
       dispatch(cartActions.resumeCart({ items, totalQuantity, totalAmount }));
       dispatch(uiActions.resumeShippingInfo(shippingInfo));
     } catch (err) {

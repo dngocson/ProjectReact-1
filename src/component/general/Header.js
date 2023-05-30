@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import ImageSlider from "./ImageSlider";
 import SearchBar from "./SearchBar";
 import Navigation from "./Navigation";
@@ -12,7 +11,6 @@ import { cartActions } from "../../store/cart-slice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { uiActions } from "../../store/ui-slice";
-import GenericButton from "../UI/GenericButton";
 const cookies = new Cookies();
 function Header() {
   const navigate = useNavigate();
@@ -33,30 +31,28 @@ function Header() {
     }
   };
   return (
-    <Fragment>
+    <div>
       <header className="z-1">
         <div className="pt-5">
           <div className="flex justify-between">
             <Link
               to={"/"}
-              className="mb-2 mt-0 text-4xl font-medium leading-tight text-primary"
+              className="text-primary mb-2 mt-0 text-4xl font-medium leading-tight"
             >
               MyShop
             </Link>
             <SearchBar />
-            <div className="flex gap-10 justify-center items-center ">
+            <div className="flex items-center justify-center gap-10 ">
               <HeaderCartButton />
               {!isAuth && (
                 <Link
-                  className="text-xl  p-2 duration-300 hover:bg-blue-600 rounded-xl "
+                  className="rounded-xl  p-2 text-xl duration-300 hover:bg-blue-600 "
                   to={"auth?mode=signup"}
                 >
                   LOGIN
                 </Link>
               )}
-              {isAuth && (
-                <GenericButton onClick={signOutHandler}>Sign Out</GenericButton>
-              )}
+              {isAuth && <button onClick={signOutHandler}>Sign Out</button>}
             </div>
           </div>
           <Navigation />
@@ -65,7 +61,7 @@ function Header() {
           <ImageSlider />
         </div>
       </header>
-    </Fragment>
+    </div>
   );
 }
 export default Header;

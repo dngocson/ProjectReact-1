@@ -7,7 +7,7 @@ const uiSlice = createSlice({
     isAuth: false,
     uid: null,
     orderList: [],
-    shippingInfo: { address: "", phoneNumber: "" },
+    shippingInfo: { address: "", phoneNumber: "", city: "", district: "" },
   },
   reducers: {
     setDisplayCart(state, action) {
@@ -26,10 +26,23 @@ const uiSlice = createSlice({
       const oldState = state.shippingInfo;
       const phoneNumber = action.payload.phoneNumber;
       const address = action.payload.address;
-      state.shippingInfo = { ...oldState, phoneNumber, address };
+      const city = action.payload.city || "";
+      const district = action.payload.district || "";
+      state.shippingInfo = {
+        ...oldState,
+        phoneNumber,
+        address,
+        city,
+        district,
+      };
     },
     clearShippingAddress(state, action) {
-      state.shippingInfo = { phoneNumber: "", address: "" };
+      state.shippingInfo = {
+        phoneNumber: "",
+        address: "",
+        city: "",
+        district: "",
+      };
     },
     resumeShippingInfo(state, action) {
       state.shippingInfo = action.payload;
