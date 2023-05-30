@@ -34,7 +34,7 @@ const OrderedList = () => {
           in.
         </p>
         <Link
-          className="bg-gray-600 p-2 m-2 inline-block hover:bg-indigo-600 duration-300 rounded-2xl"
+          className="m-2 inline-block rounded-2xl bg-gray-600 p-2 duration-300 hover:bg-indigo-600"
           to={"/auth?mode=signup"}
         >
           Click me
@@ -58,7 +58,7 @@ const OrderedList = () => {
 
       <ul>
         {renderedList.map((order, index) => (
-          <li key={index} className="bg-slate-500 p-4 rounded-xl my-5">
+          <li key={index} className="my-5 rounded-xl bg-slate-500 p-4">
             <div className="">
               <div className="">
                 <p className="text-2xl text-white">
@@ -66,7 +66,7 @@ const OrderedList = () => {
                   {formatDate(order.createAt)}
                 </p>
               </div>
-              <div className="grid grid-cols-7 text-center text-xl p-4 text-white">
+              <div className="grid grid-cols-7 p-4 text-center text-xl text-white">
                 <p className="col-span-2">PRODUCTS DETAILS</p>
                 <p>QUANTITY</p>
                 <p>PRICE</p>
@@ -78,13 +78,17 @@ const OrderedList = () => {
                   <OrderedItem key={index} item={item} index={index + 1} />
                 ))}
               </ul>
-              <div className="text-xl mt-3 bg-white rounded-xl p-4">
+              <div className="mt-3 rounded-xl bg-white p-4 text-xl">
                 <p className="text-2xl">
                   Total : {order.totalQuantity} items -{" "}
                   {order.totalAmount.toFixed(2)}$
                 </p>
-                <p>Shipping address: {order.address}</p>
-                <p>Contact phone number: {order.phoneNumber}</p>
+                <p>
+                  Shipping address: {order.shippingInfo.address},
+                  {order.shippingInfo.district},{order.shippingInfo.city} city,
+                  VietNam
+                </p>
+                <p>Contact phone number: {order.shippingInfo.phoneNumber}</p>
               </div>
             </div>
           </li>

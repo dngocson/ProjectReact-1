@@ -15,8 +15,10 @@ const Cart = () => {
   const totalPrice = useSelector((state) => state.cart.totalAmount);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const userAddress = useSelector((state) => state.ui.shippingInfo.address);
-  const [city, setCity] = useState("");
-  const [district, setDistrict] = useState("");
+  // const [city, setCity] = useState("");
+  // const [district, setDistrict] = useState("");
+  const city = useSelector((state) => state.ui.shippingInfo.city);
+  const district = useSelector((state) => state.ui.shippingInfo.district);
   const userPhoneNumber = useSelector(
     (state) => state.ui.shippingInfo.phoneNumber
   );
@@ -49,18 +51,18 @@ const Cart = () => {
     );
   };
 
-  const inputCityHandler = ({ city, district }) => {
-    setCity(city);
-    dispatch(
-      uiActions.setShippingAddress({ phoneNumber, address, city, district })
-    );
-  };
-  const inputDistrictHandler = ({ city, district }) => {
-    setDistrict(district);
-    dispatch(
-      uiActions.setShippingAddress({ phoneNumber, address, city, district })
-    );
-  };
+  // const inputCityHandler = ({ city, district }) => {
+  //   setCity(city);
+  //   dispatch(
+  //     uiActions.setShippingAddress({ phoneNumber, address, city, district })
+  //   );
+  // };
+  // const inputDistrictHandler = ({ city, district }) => {
+  //   setDistrict(district);
+  //   dispatch(
+  //     uiActions.setShippingAddress({ phoneNumber, address, city, district })
+  //   );
+  // };
   return (
     <div className="fixed left-[50%] top-[50%] z-30 grid h-5/6 w-2/3 -translate-x-1/2 -translate-y-1/2 transform grid-cols-7 grid-rows-4 bg-[#ffffff] text-2xl">
       <div className="col-span-5 row-span-3">
@@ -120,8 +122,8 @@ const Cart = () => {
           <p className="text-base">Please input your information</p>
           <form onSubmit={sendDataHandler} className="flex flex-col">
             <CityDistrictForm
-              setCity={inputCityHandler}
-              setDistrict={inputDistrictHandler}
+            // setCity={inputCityHandler}
+            // setDistrict={inputDistrictHandler}
             />
             <p className="text-base">Address:</p>
             <textarea

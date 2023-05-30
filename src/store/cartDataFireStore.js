@@ -73,14 +73,13 @@ export const updateOrderList = () => {
     const { totalAmount, totalQuantity } = state.cart;
     const cartItems = state.cart.items || [];
     const currentId = state.ui.uid;
-    const { address, phoneNumber } = state.ui.shippingInfo;
+    const shippingInfo = state.ui.shippingInfo;
     try {
       await addDoc(orderListCollection, {
         items: cartItems,
         totalAmount: Number(totalAmount),
         totalQuantity,
-        address: address,
-        phoneNumber: phoneNumber,
+        shippingInfo,
         uid: currentId,
         createAt: serverTimestamp(),
       });

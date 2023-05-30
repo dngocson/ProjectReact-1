@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { uiActions } from "../../store/ui-slice";
+import { useSelector } from "react-redux";
 const cities = [
   {
-    name: "Ho Chi Minh City",
+    name: "Ho Chi Minh",
     districts: [
       "Thu Duc",
       "Tan Phu",
@@ -126,8 +129,13 @@ const cities = [
 ];
 
 function CityDistrictForm({ setCity, setDistrict }) {
+  const dispatch = useDispatch();
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
+  const phoneNumber = useSelector((state) => state.ui.shippingInfo.phoneNumber);
+  const address = useSelector((state) => state.ui.shippingInfo.address);
+  const userCity = useSelector((state) => state.ui.shippingInfo.city);
+  const userDistrict = useSelector((state) => state.ui.shippingInfo.district);
   const handleCityChange = (event) => {
     setSelectedCity(event.target.value);
     setSelectedDistrict("");
@@ -135,10 +143,25 @@ function CityDistrictForm({ setCity, setDistrict }) {
   const handleDistrictChange = (event) => {
     setSelectedDistrict(event.target.value);
   };
+
   useEffect(() => {
-    setCity({ city: selectedCity, district: selectedDistrict });
-    setDistrict({ city: selectedCity, district: selectedDistrict });
+    if (selectedCity && selectedDistrict) {
+      dispatch(
+        uiActions.setShippingAddress({
+          address,
+          phoneNumber,
+          city: selectedCity,
+          district: selectedDistrict,
+        })
+      );
+    }
   }, [selectedCity, selectedDistrict]);
+  useEffect(() => {
+    if (userCity && userDistrict) {
+      setSelectedCity(userCity);
+      setSelectedDistrict(userDistrict);
+    }
+  }, [userCity, userDistrict]);
   const cityOptions = cities.map((city) => (
     <option key={city.name} value={city.name}>
       {city.name}
@@ -147,7 +170,7 @@ function CityDistrictForm({ setCity, setDistrict }) {
   let districtOptions = [];
   if (selectedCity) {
     const city = cities.find((city) => city.name === selectedCity);
-    districtOptions = city.districts.map((district) => (
+    districtOptions = city?.districts.map((district) => (
       <option key={district} value={district}>
         {district}
       </option>
