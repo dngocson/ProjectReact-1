@@ -5,7 +5,7 @@ const NavigationButton = ({ desc, label }) => {
       {
         <NavLink
           to={desc}
-          className="text-white text-2xl aria-[current=page]:text-black font-bold"
+          className=" text-2xl font-bold text-white aria-[current=page]:text-black"
         >
           {label}
         </NavLink>

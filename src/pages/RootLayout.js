@@ -7,10 +7,12 @@ function RootLayout() {
   const cartIsDisplay = useSelector((state) => state.ui.displayCart);
   return (
     <div className="">
-      {cartIsDisplay && <Popup />}
-      <Header />
-      <Outlet />
-      <Footer />
+      <div className=" bg-sky-100 p-4 dark:bg-slate-900 dark:text-red-700">
+        {cartIsDisplay && <Popup />}
+        <Header />
+        <Outlet />
+        <Footer />
+      </div>
     </div>
   );
 }

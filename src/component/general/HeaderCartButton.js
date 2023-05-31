@@ -9,15 +9,14 @@ const HeaderCartButton = (props) => {
     dispatch(uiActions.setDisplayCart());
   };
   return (
-    <>
-      <button
-        className="flex items-center justify-center w-[80px] gap-1 bg-slate-500 rounded-lg"
-        onClick={displayCart}
-      >
-        <BiCart size={30} />
-        <span className="p-1 text-lg">{totalProduct}</span>
+    <div className="flex items-center justify-center rounded-full p-1 transition duration-300 dark:bg-slate-500 dark:hover:bg-slate-400 md:rounded-lg">
+      <button onClick={displayCart} className="ns_center">
+        <BiCart size={32} />
+        <span className="hidden rounded-full bg-orange-400 px-2 text-lg md:block">
+          {totalProduct}
+        </span>
       </button>
-    </>
+    </div>
   );
 };
 

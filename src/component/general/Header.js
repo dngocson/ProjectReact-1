@@ -1,26 +1,58 @@
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "firebase/auth";
+
 import ImageSlider from "./ImageSlider";
 import SearchBar from "./SearchBar";
 import Navigation from "./Navigation";
 import HeaderCartButton from "./HeaderCartButton";
-import { Link } from "react-router-dom";
-import { signOut } from "firebase/auth";
-import { firebaseAuth as auth } from "../../config/firebase";
-import { useSelector } from "react-redux";
-import Cookies from "universal-cookie";
+
 import { cartActions } from "../../store/cart-slice";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { uiActions } from "../../store/ui-slice";
-const cookies = new Cookies();
+
+import { BsFillMoonStarsFill, BsFillSunFill, BsListUl } from "react-icons/bs";
+import { AiOutlineLogin, AiOutlineLogout } from "react-icons/ai";
+
+import { getAuth } from "firebase/auth";
+
 function Header() {
+  const auth = getAuth();
+  const [displayNav, setDisplayNav] = useState(true);
+  const setDisplayNavHandler = () => {
+    setDisplayNav(!displayNav);
+  };
+  const user = auth.currentUser;
+  let displayTest = "";
+  if (user) {
+    let username = user.displayName;
+    if (username === null) username = "";
+    displayTest = `Wellcome ${username}`;
+  } else {
+    displayTest = `Let's Sign In`;
+  }
   const navigate = useNavigate();
   const isAuth = useSelector((state) => state.ui.isAuth);
   const dispatch = useDispatch();
+  const [darkMode, setDarkMode] = useState(undefined);
+  const switchDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+  useEffect(() => {
+    if (darkMode) {
+      localStorage.setItem("darkMode", "true");
+      window.document.documentElement.classList.add("dark");
+    } else if (darkMode === false) {
+      localStorage.setItem("darkMode", "false");
+      window.document.documentElement.classList.remove("dark");
+    } else {
+      setDarkMode(localStorage.getItem("darkMode") === "true");
+    }
+  }, [darkMode]);
   const signOutHandler = async () => {
     try {
       if (window.confirm("Do you really want to leave?")) {
         await signOut(auth);
-        cookies.remove("auth-token");
         dispatch(cartActions.clearCart());
         dispatch(uiActions.setOrderlist(null));
         dispatch(uiActions.clearShippingAddress());
@@ -33,30 +65,50 @@ function Header() {
   return (
     <div>
       <header className="z-1">
-        <div className="pt-5">
-          <div className="flex justify-between">
-            <Link
-              to={"/"}
-              className="text-primary mb-2 mt-0 text-4xl font-medium leading-tight"
+        <div className="flex items-center justify-between gap-2 py-2">
+          <Link
+            to={"/"}
+            className="text-3xl font-semibold md:text-3xl md:font-bold"
+          >
+            MyShop
+          </Link>
+          <SearchBar />
+          <div className=" flex items-center justify-center gap-2 self-end md:flex ">
+            <HeaderCartButton />
+            <div
+              className="ns_center rounded-full p-2 transition duration-300 dark:bg-slate-500 dark:hover:bg-slate-400"
+              onClick={switchDarkMode}
             >
-              MyShop
-            </Link>
-            <SearchBar />
-            <div className="flex items-center justify-center gap-10 ">
-              <HeaderCartButton />
+              {!darkMode ? (
+                <BsFillMoonStarsFill size={25} />
+              ) : (
+                <BsFillSunFill size={25} />
+              )}
+            </div>
+            <p className="hidden dark:text-white md:block">{displayTest}</p>
+            <div className="md:hidden">
+              <button
+                onClick={setDisplayNavHandler}
+                className="ns_center rounded-full p-2 transition duration-300 dark:bg-slate-500 dark:hover:bg-slate-400 "
+              >
+                <BsListUl size={25} />
+              </button>
+            </div>
+            <div className="ns_center rounded-full p-2 transition duration-300 dark:bg-slate-500 dark:hover:bg-slate-400">
               {!isAuth && (
-                <Link
-                  className="rounded-xl  p-2 text-xl duration-300 hover:bg-blue-600 "
-                  to={"auth?mode=signup"}
-                >
-                  LOGIN
+                <Link className="" to={"auth?mode=signup"}>
+                  <AiOutlineLogin size={25} />
                 </Link>
               )}
-              {isAuth && <button onClick={signOutHandler}>Sign Out</button>}
+              {isAuth && (
+                <button className=" " onClick={signOutHandler}>
+                  <AiOutlineLogout size={25} />
+                </button>
+              )}
             </div>
           </div>
-          <Navigation />
         </div>
+        <Navigation open={displayNav} />
         <div>
           <ImageSlider />
         </div>

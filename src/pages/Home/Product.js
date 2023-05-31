@@ -11,32 +11,32 @@ const Product = ({ title, price, id, image }) => {
   const isAuth = useSelector((state) => state.ui.isAuth);
   const addItemtoCart = () => {
     if (!isAuth) {
-      navigate("auth?mode=signup");
+      navigate("/auth?mode=signup");
       return;
     }
     toast.success("Item added to cart", { theme: "colored" });
     dispatch(cartActions.addItemtoCart({ id, price, title, image }));
   };
   return (
-    <div className="w-full max-w-sm h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col justify-between ">
+    <div className="flex h-full w-full max-w-sm flex-col justify-between rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800 ">
       <NavLink to={`/product/detail/${id}`}>
         <img
-          className="p-6 h-96 w-full transform hover:scale-105 duration-300"
+          className="h-96 w-full transform p-6 duration-300 hover:scale-105"
           src={image}
           alt="product image"
         />
       </NavLink>
-      <div className="px-5 pb-5 flex flex-col w-full h-full">
+      <div className="flex h-full w-full flex-col px-5 pb-5">
         <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
           {title}
         </h5>
-        <div className="flex  justify-between h-full items-end">
+        <div className="flex  h-full items-end justify-between">
           <span className="text-3xl font-bold text-gray-900 dark:text-white">
             ${price}
           </span>
           <button
             onClick={addItemtoCart}
-            className="text-white bg-blue-700 hover:bg-blue-800   font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="rounded-lg bg-blue-700 px-5   py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Add to cart
           </button>

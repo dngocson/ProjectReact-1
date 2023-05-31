@@ -7,7 +7,11 @@ import { Provider } from "react-redux";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <div className="max-w-screen-2xl text-base mx-auto px-8 bg-slate-400">
+    <div
+      className={
+        localStorage.getItem("darkMode") === true ? "dark p-4" : "light p-4"
+      }
+    >
       <App />
     </div>
   </Provider>
