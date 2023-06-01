@@ -19,12 +19,12 @@ const CartItem = (props) => {
     dispatch(cartActions.removeAllQuantityFromCart({ id, quantity, total }));
   };
   return (
-    <li className="border-b grid grid-cols-5 p-2 text-xl ">
+    <li className="grid grid-cols-5 border-b p-2 text-sm sm:text-base md:text-xl ">
       <div className="col-span-2 flex items-center gap-3">
-        <img src={image} className="w-[25%] aspect-square" />
+        <img src={image} className="aspect-square w-[25%]" />
         <div>
           <p>{title}</p>
-          <button onClick={removeHandler} className="text-base text-red-600">
+          <button onClick={removeHandler} className=" text-red-600">
             remove
           </button>
         </div>

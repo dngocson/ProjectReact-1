@@ -15,8 +15,6 @@ const Cart = () => {
   const totalPrice = useSelector((state) => state.cart.totalAmount);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const userAddress = useSelector((state) => state.ui.shippingInfo.address);
-  // const [city, setCity] = useState("");
-  // const [district, setDistrict] = useState("");
   const city = useSelector((state) => state.ui.shippingInfo.city);
   const district = useSelector((state) => state.ui.shippingInfo.district);
   const userPhoneNumber = useSelector(
@@ -50,33 +48,20 @@ const Cart = () => {
       uiActions.setShippingAddress({ phoneNumber, address, city, district })
     );
   };
-
-  // const inputCityHandler = ({ city, district }) => {
-  //   setCity(city);
-  //   dispatch(
-  //     uiActions.setShippingAddress({ phoneNumber, address, city, district })
-  //   );
-  // };
-  // const inputDistrictHandler = ({ city, district }) => {
-  //   setDistrict(district);
-  //   dispatch(
-  //     uiActions.setShippingAddress({ phoneNumber, address, city, district })
-  //   );
-  // };
   return (
-    <div className="fixed left-[50%] top-[50%] z-30 grid h-5/6 w-2/3 -translate-x-1/2 -translate-y-1/2 transform grid-cols-7 grid-rows-4 bg-[#ffffff] text-2xl">
+    <div className="fixed left-[50%] top-[50%] z-40 grid h-full w-full -translate-x-1/2 -translate-y-1/2 transform grid-cols-5 grid-rows-4 overflow-scroll bg-white text-2xl md:grid-cols-7 xl:h-5/6 xl:w-2/3">
       <div className="col-span-5 row-span-3">
-        <div className="flex items-center justify-between  border-b p-4">
-          <h2>Shopping Cart</h2>
-          <h2>{totalQuantity} items</h2>
+        <div className="flex items-center justify-between border-b p-4">
+          <p className="text-base md:text-2xl">Shopping Cart</p>
+          <p className="text-base md:text-2xl">{totalQuantity} items</p>
         </div>
         <div className="grid grid-cols-5 border-b text-center ">
-          <p className="col-span-2">PRODUCTS DETAILS</p>
-          <p className="col-span-1">QUANTITY</p>
-          <p className="col-span-1">PRICE</p>
-          <p className="col-span-1">TOTAL</p>
+          <p className="col-span-2 text-base md:text-2xl">PRODUCTS DETAILS</p>
+          <p className="col-span-1 text-base md:text-2xl">QUANTITY</p>
+          <p className="col-span-1 text-base md:text-2xl">PRICE</p>
+          <p className="col-span-1 text-base md:text-2xl">TOTAL</p>
         </div>
-        <div className="max-h-[32rem] overflow-x-hidden ">
+        <div className="max-h-[23rem] overflow-x-hidden ">
           <ul className="">
             {hasItems ? (
               cartItems.map((item) => (
@@ -93,7 +78,7 @@ const Cart = () => {
                 />
               ))
             ) : (
-              <p className="p-4">
+              <p className="p-4 text-base md:text-2xl">
                 It looks like your cart is empty. Let’s add some items to it!
               </p>
             )}
@@ -101,7 +86,7 @@ const Cart = () => {
         </div>
         <div className="m-7 text-[#6467d8]">
           <button
-            className="flex items-center justify-center"
+            className="flex items-center justify-center text-base md:text-2xl"
             onClick={continueShopping}
           >
             <BsArrowBarLeft />
@@ -109,28 +94,29 @@ const Cart = () => {
           </button>
         </div>
       </div>
-      <div className="col-span-2 row-span-4 flex h-full flex-col bg-[#f6f6f6]">
-        <div className="border-b p-4">
-          <h2>Order Summary</h2>
+      <div className=" col-span-5 flex h-full flex-col bg-[#f6f6f6] md:col-span-2 md:row-span-4">
+        <div className="flex justify-between border-b p-4">
+          <p className="text-base md:text-2xl">Order Summary</p>
+          <p className=" block text-base md:hidden md:text-2xl">Total Amount</p>
         </div>
         <div className="flex w-full justify-between px-4">
-          <h3>{totalQuantity} Item</h3>
-          <h3>{totalPrice.toFixed(2)}$</h3>
+          <p className="text-base md:text-2xl">{totalQuantity} Item</p>
+          <p className="text-base md:text-2xl">{totalPrice.toFixed(2)}$</p>
         </div>
-        <div className="px-4 pt-6">
+        <div className=" bg-[#f6f6f6] px-4 md:pt-6">
           <p className="text-xl">SHIPPING</p>
           <p className="text-base">Please input your information</p>
-          <form onSubmit={sendDataHandler} className="flex flex-col">
-            <CityDistrictForm
-            // setCity={inputCityHandler}
-            // setDistrict={inputDistrictHandler}
-            />
+          <form
+            onSubmit={sendDataHandler}
+            className="flex flex-col bg-[#f6f6f6]"
+          >
+            <CityDistrictForm />
             <p className="text-base">Address:</p>
             <textarea
               type="text"
               required
               placeholder="Your address"
-              className="w-full placeholder:text-base focus:outline-none focus:ring-0"
+              className="w-full text-base placeholder:text-base focus:outline-none focus:ring-0 md:hidden md:text-2xl"
               rows={4}
               spellCheck={false}
               onChange={(e) => inputAddressHandler(e.target.value)}
@@ -141,12 +127,12 @@ const Cart = () => {
               placeholder="Phone number"
               onChange={(e) => inputPhoneNumberHandler(e.target.value)}
               required
-              className="w-full text-base"
+              className="w-full text-base placeholder:text-base focus:outline-none focus:ring-0 md:hidden md:text-2xl"
               defaultValue={userPhoneNumber}
             ></textarea>
             {hasItems ? (
               <button
-                className="mt-4 w-full self-center bg-slate-400 py-3 text-xl font-semibold duration-300 hover:bg-indigo-600"
+                className="mt-4 w-56 self-center py-3 text-xl font-semibold duration-300 dark:bg-blue-300 dark:hover:bg-blue-500 md:w-full"
                 type="submit"
               >
                 CHECK OUT

@@ -6,7 +6,7 @@ const ListOfProduct = ({ name }) => {
 
   const filtredArray = array.filter((item) => item.category === name);
   return (
-    <ul className="col-span-3 grid grid-cols-3 gap-3">
+    <ul className="grid w-full grid-cols-1 gap-1 sm:grid-cols-2 md:w-[80%] md:gap-1 lg:grid-cols-3 lg:gap-2 xl:grid-cols-4 xl:gap-3">
       {filtredArray.map((product, index) => (
         <li className="" key={index}>
           <Product

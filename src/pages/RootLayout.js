@@ -7,7 +7,7 @@ function RootLayout() {
   const cartIsDisplay = useSelector((state) => state.ui.displayCart);
   return (
     <div className="">
-      <div className=" bg-sky-100 p-4 dark:bg-slate-900 dark:text-red-700">
+      <div className=" flex flex-col gap-4 bg-sky-100 p-4 dark:bg-slate-900 dark:text-slate-50">
         {cartIsDisplay && <Popup />}
         <Header />
         <Outlet />

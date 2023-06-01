@@ -1,10 +1,12 @@
 const Categories = ({ imgSrc, name }) => {
   return (
-    <div className="col-span-1 w-full h-full relative ">
-      <p className="absolute top-0 text-2xl text-white p-2 m-2 bg-slate-600 bg-opacity-70 rounded-2xl">
-        {name}
-      </p>
-      <img className="w-full h-[40%] rounded-2xl" src={imgSrc}></img>
+    <div className="w-[100%] rounded-2xl border border-gray-200  shadow dark:border-gray-700 dark:bg-gray-800 md:w-[30%] lg:w-[20%]">
+      <div className="relative p-4 ">
+        <p className="absolute top-5 m-2 rounded-2xl bg-slate-600 bg-opacity-70 p-2 text-base text-white md:text-xl lg:text-xl">
+          {name}
+        </p>
+        <img className=" h-96 w-full rounded-2xl" src={imgSrc}></img>
+      </div>
     </div>
   );
 };
