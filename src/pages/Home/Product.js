@@ -44,7 +44,7 @@ const Product = ({ title, price, id, image }) => {
           </button>
         </div>
       </div>
-      <ToastContainer autoClose={1000} limit={3} />
+      <ToastContainer autoClose={300} limit={3} />
     </div>
   );
 };

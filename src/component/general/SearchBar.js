@@ -71,7 +71,7 @@ function SearchBar() {
           .map((item) => (
             <p
               onClick={() => clickTextHandler(item.title)}
-              className="left-0 cursor-pointer border border-black bg-slate-300"
+              className="left-0 cursor-pointer border border-black dark:bg-slate-700"
               key={item.title}
             >
               {item.title}

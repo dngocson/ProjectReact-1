@@ -30,13 +30,17 @@ const OrderedItem = ({ item }) => {
 
   return (
     <li className=" pt-1 text-xs md:pt-4 md:text-2xl">
-      <div className="grid grid-cols-5 gap-2 overflow-hidden rounded-xl bg-white dark:bg-slate-300 sm:grid-cols-7">
+      <div className="grid grid-cols-5 gap-2 overflow-hidden rounded-xl bg-white dark:bg-zinc-700 sm:grid-cols-7">
         <div className="col-span-2 flex flex-col">
           <Link
             to={`/product/detail/${item.id}`}
-            className="flex items-center gap-3 md:text-lg"
+            className="flex items-center gap-1 md:gap-3 md:text-lg"
           >
-            <img src={item.image} className="aspect-square w-[40%]"></img>
+            <img
+              src={item.image}
+              className="aspect-square w-[40%]"
+              alt={item.id}
+            ></img>
             <p>{item.title}</p>
           </Link>
         </div>

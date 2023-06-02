@@ -116,7 +116,7 @@ const Cart = () => {
               type="text"
               required
               placeholder="Your address"
-              className="w-full text-base placeholder:text-base focus:outline-none focus:ring-0 md:hidden md:text-2xl"
+              className="w-full placeholder:text-base focus:outline-none focus:ring-0"
               rows={4}
               spellCheck={false}
               onChange={(e) => inputAddressHandler(e.target.value)}
@@ -127,7 +127,7 @@ const Cart = () => {
               placeholder="Phone number"
               onChange={(e) => inputPhoneNumberHandler(e.target.value)}
               required
-              className="w-full text-base placeholder:text-base focus:outline-none focus:ring-0 md:hidden md:text-2xl"
+              className="w-full text-base"
               defaultValue={userPhoneNumber}
             ></textarea>
             {hasItems ? (

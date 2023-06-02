@@ -82,14 +82,14 @@ const OrderedList = () => {
                   <OrderedItem key={index} item={item} index={index + 1} />
                 ))}
               </ul>
-              <div className="mt-1 rounded-xl bg-white p-2 text-xs text-black md:mt-3 md:p-4 md:text-2xl">
+              <div className="mt-1 rounded-xl p-2 text-xs text-black dark:bg-gray-800 dark:text-white md:mt-3 md:p-4 md:text-2xl">
                 <p>
-                  TOTAL : {order.totalQuantity} items :{" "}
+                  TOTAL : {order.totalQuantity} items -{" "}
                   {order.totalAmount.toFixed(2)}$
                 </p>
                 <p>
-                  Shipping address: {order.shippingInfo.address},
-                  {order.shippingInfo.district},{order.shippingInfo.city} city,
+                  Shipping address: {order.shippingInfo.address},{" "}
+                  {order.shippingInfo.district}, {order.shippingInfo.city} city,
                   VietNam
                 </p>
                 <p>Contact phone number: {order.shippingInfo.phoneNumber}</p>

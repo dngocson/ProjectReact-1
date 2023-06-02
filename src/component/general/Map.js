@@ -57,19 +57,19 @@ function DisplayPosition({
     [map]
   );
   return (
-    <div className="col-span-3 p-4 bg-white rounded-2xl overflow-hidden">
-      <p className="text-xl">
+    <div className="col-span-1 overflow-hidden rounded-2xl p-4 text-xs dark:bg-zinc-700 sm:text-sm md:col-span-4 md:text-base lg:col-span-3  xl:text-xl">
+      <p>
         Please find the location of our stores below and choose the one closest
         to you.
       </p>
-      <div className="text-xl">
+      <div>
         {markers.map((location) => (
           <div key={location.index} className="border-b py-2">
             <p>
               Our {location.order}: <span>{location.popup}</span>
             </p>
             <button
-              className=" p-2  bg-[#64748b] rounded-xl hover:bg-indigo-600 duration-300"
+              className="rounded-xl bg-[#64748b] p-2 duration-300 hover:bg-indigo-600"
               onClick={() => onClick(location)}
             >
               View on map
@@ -79,7 +79,7 @@ function DisplayPosition({
         {errorMessage && <p>{errorMessage}</p>}
         {!userlocation.length > 0 && (
           <button
-            className="text-2xl text-blue-500 hover:text-blue-700"
+            className="text-blue-500 hover:text-blue-700"
             onClick={fetchUserLocation}
           >
             Fetch your location
@@ -90,7 +90,7 @@ function DisplayPosition({
           <p>
             Click{" "}
             <button
-              className="text-2xl text-blue-500 hover:text-blue-700"
+              className="text-blue-500 hover:text-blue-700"
               onClick={() => moveToUserPos(userlocation)}
             >
               HERE
@@ -167,9 +167,9 @@ function Map() {
   const displayMap = useMemo(() => {
     const haveLocation = userlocation.length > 1;
     return (
-      <div className="col-span-7 rounded-2xl overflow-hidden">
+      <div className="col-span-1 overflow-hidden rounded-2xl md:col-span-6 lg:col-span-7">
         <MapContainer
-          className="h-[75vh] z-1"
+          className="z-1 h-[40vh] md:h-[75vh]"
           center={[10.777262, 106.688116]}
           zoom={12}
           zoomControl={false}
@@ -190,7 +190,9 @@ function Map() {
                 icon={customIcon}
                 ref={(ref) => (markerRef.current[index] = ref)}
               >
-                <Popup>{marker.popup}</Popup>
+                <Popup closeButton={false} autoClose={false}>
+                  <p className="text-xs">{marker.popup}</p>
+                </Popup>
               </Marker>
             ))}
           </MarkerClusterGroup>
@@ -208,7 +210,7 @@ function Map() {
   }, [customIcon, userlocation]);
 
   return (
-    <div className="grid grid-cols-10 gap-5">
+    <div className="grid grid-cols-1 gap-2 md:grid-cols-10 md:gap-5">
       {map ? (
         <DisplayPosition
           map={map}
