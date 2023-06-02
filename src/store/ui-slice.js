@@ -8,9 +8,10 @@ const uiSlice = createSlice({
     uid: null,
     orderList: [],
     shippingInfo: { address: "", phoneNumber: "", city: "", district: "" },
+    displayNav: false,
   },
   reducers: {
-    setDisplayCart(state, action) {
+    setDisplayCart(state) {
       state.displayCart = !state.displayCart;
     },
     checkUserLogin(state, action) {
@@ -36,7 +37,7 @@ const uiSlice = createSlice({
         district,
       };
     },
-    clearShippingAddress(state, action) {
+    clearShippingAddress(state) {
       state.shippingInfo = {
         phoneNumber: "",
         address: "",
@@ -46,6 +47,9 @@ const uiSlice = createSlice({
     },
     resumeShippingInfo(state, action) {
       state.shippingInfo = action.payload;
+    },
+    setDisplaynav(state) {
+      state.displayNav = !state.displayNav;
     },
   },
 });

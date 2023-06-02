@@ -17,10 +17,11 @@ import { AiOutlineLogin, AiOutlineLogout } from "react-icons/ai";
 import { getAuth } from "firebase/auth";
 
 function Header() {
+  const dispatch = useDispatch();
   const auth = getAuth();
-  const [displayNav, setDisplayNav] = useState(false);
+
   const setDisplayNavHandler = () => {
-    setDisplayNav(!displayNav);
+    dispatch(uiActions.setDisplaynav());
   };
   const user = auth.currentUser;
   let displayTest = "";
@@ -33,7 +34,6 @@ function Header() {
   }
   const navigate = useNavigate();
   const isAuth = useSelector((state) => state.ui.isAuth);
-  const dispatch = useDispatch();
   const [darkMode, setDarkMode] = useState(undefined);
   const switchDarkMode = () => {
     setDarkMode(!darkMode);
@@ -108,7 +108,7 @@ function Header() {
             </div>
           </div>
         </div>
-        <Navigation open={displayNav} />
+        <Navigation />
         <div>
           <ImageSlider />
         </div>

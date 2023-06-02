@@ -24,7 +24,7 @@ const OrderedList = () => {
   let renderedList;
   if (!isAuth) {
     return (
-      <div className="text-2xl">
+      <div className="text-base md:text-2xl">
         <p>
           This feature is only available after you have logged in and placed an
           order.
@@ -49,38 +49,42 @@ const OrderedList = () => {
   }
 
   return (
-    <div>
+    <div className="text-xs md:text-base">
       <h3>Order History</h3>
       <p>
         Thank you for choosing to shop with us and for your continued support.
         Here is a list of your completed orders
       </p>
-
       <ul>
         {renderedList.map((order, index) => (
-          <li key={index} className="my-5 rounded-xl bg-slate-500 p-4">
+          <li
+            key={index}
+            className="my-2 rounded-xl bg-slate-500 p-2 md:my-5 md:p-4"
+          >
             <div className="">
-              <div className="">
-                <p className="text-2xl text-white">
-                  Order number: #{index + 1}, placed on{" "}
-                  {formatDate(order.createAt)}
+              <p className="text-xs text-white md:text-2xl">
+                Order number: #{index + 1}, placed on{" "}
+                {formatDate(order.createAt)}
+              </p>
+              <div className="grid grid-cols-5 text-center text-xl text-white sm:grid-cols-7 md:p-4">
+                <p className="col-span-2 text-xs md:text-2xl">
+                  PRODUCTS DETAILS
                 </p>
-              </div>
-              <div className="grid grid-cols-7 p-4 text-center text-xl text-white">
-                <p className="col-span-2">PRODUCTS DETAILS</p>
-                <p>QUANTITY</p>
-                <p>PRICE</p>
-                <p>TOTAL</p>
-                <p>INFOR</p>
+                <p className="text-xs md:text-2xl">QUANTITY</p>
+                <p className="text-xs md:text-2xl">PRICE</p>
+                <p className="text-xs md:text-2xl">TOTAL</p>
+                <p className="col-span-2 hidden text-xs sm:block md:col-span-1 md:text-2xl">
+                  INFOR
+                </p>
               </div>
               <ul>
                 {order.items.map((item, index) => (
                   <OrderedItem key={index} item={item} index={index + 1} />
                 ))}
               </ul>
-              <div className="mt-3 rounded-xl bg-white p-4 text-xl">
-                <p className="text-2xl">
-                  Total : {order.totalQuantity} items -{" "}
+              <div className="mt-1 rounded-xl bg-white p-2 text-xs text-black md:mt-3 md:p-4 md:text-2xl">
+                <p>
+                  TOTAL : {order.totalQuantity} items :{" "}
                   {order.totalAmount.toFixed(2)}$
                 </p>
                 <p>

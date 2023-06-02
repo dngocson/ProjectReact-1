@@ -34,7 +34,7 @@ const Cart = () => {
   };
   const continueShopping = () => {
     dispatch(uiActions.setDisplayCart());
-    navigate("/");
+    navigate("/allProduct");
   };
   const inputAddressHandler = (address) => {
     setAddess(address);
