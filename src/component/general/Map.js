@@ -109,6 +109,9 @@ function Map() {
   const userIconRef = useRef();
   const [userlocation, setUserLocation] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const fetchUserLocation = function () {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -190,7 +193,7 @@ function Map() {
                 icon={customIcon}
                 ref={(ref) => (markerRef.current[index] = ref)}
               >
-                <Popup closeButton={false} autoClose={false}>
+                <Popup closeButton={false}>
                   <p className="text-xs">{marker.popup}</p>
                 </Popup>
               </Marker>

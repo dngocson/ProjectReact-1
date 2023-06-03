@@ -2,10 +2,17 @@ import { BiCart } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { uiActions } from "../../store/ui-slice";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const HeaderCartButton = (props) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const totalProduct = useSelector((state) => state.cart.totalQuantity);
+  const isAuth = useSelector((state) => state.ui.isAuth);
   const displayCart = () => {
+    if (!isAuth) {
+      navigate("/auth?mode=signup");
+      return;
+    }
     dispatch(uiActions.setDisplayCart());
   };
   return (

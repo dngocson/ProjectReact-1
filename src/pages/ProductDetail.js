@@ -6,8 +6,13 @@ import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom/dist";
+import { useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
 const ProductDetail = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  localStorage.setItem("redirectUrl", window.location.href);
   const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -46,7 +51,7 @@ const ProductDetail = () => {
           <p className="py-5 text-base font-bold sm:text-lg md:grid-cols-2 md:text-xl lg:text-2xl xl:text-3xl">
             {currentProduct.title}
           </p>
-          <div className="flex items-start text-base">
+          <div className="flex items-start text-lg sm:text-lg md:grid-cols-2 md:text-xl lg:text-2xl xl:text-3xl">
             <p>{currentProduct.price}$</p>
             <div className="relative flex">
               <div className="absolute left-2 top-0 flex items-center justify-center md:top-1">

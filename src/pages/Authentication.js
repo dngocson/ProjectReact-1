@@ -16,30 +16,34 @@ function Authentication() {
   const signInWithGoogleHandler = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-      navigate("/");
+      navigate(-1);
     } catch (error) {
       console.error(error.message);
     }
   };
   return (
     <div className="flex flex-col">
-      <p className="text-3xl p-4 text-center">
-        Please login or create an account to access all features and save your
+      <p className="p-4 text-center sm:text-lg md:grid-cols-2 md:text-xl lg:text-2xl xl:text-3xl">
+        Please sign in or create an account to access all features and save your
         progress.
       </p>
       <AuthForm isSummiting={isSummiting} errors={errors} />
-      <button
-        className="m-4 bg-white rounded-full w-fit self-center hover:bg-indigo-600"
-        onClick={signInWithGoogleHandler}
-      >
-        <AiOutlineGoogle color="black" size={40} />
-      </button>
+      <div className="mt-4 flex flex-col items-center justify-end gap-2 self-center">
+        <p className="text-base md:text-xl">have a google account?</p>
+        <button
+          className="m-1 w-fit self-center rounded-full bg-white hover:bg-indigo-600"
+          onClick={signInWithGoogleHandler}
+        >
+          <AiOutlineGoogle color="black" size={40} />
+        </button>
+      </div>
     </div>
   );
 }
 
 export default Authentication;
 export async function action({ request }) {
+  const redirectUrl = localStorage.getItem("redirectUrl") || "/";
   const searchParams = new URL(request.url).searchParams;
   const mode = searchParams.get("mode") || "login";
   if (mode !== "login" && mode !== "signup") {
@@ -76,7 +80,7 @@ export async function action({ request }) {
     if (mode === "login") {
       await signInWithEmailAndPassword(auth, authData.email, authData.password);
     }
-    return redirect("/");
+    return redirect(redirectUrl);
   } catch (error) {
     errors.message = error.message;
     return errors;

@@ -9,7 +9,9 @@ root.render(
   <Provider store={store}>
     <div
       className={
-        localStorage.getItem("darkMode") === true ? "dark p-4" : "light p-4"
+        localStorage.getItem("darkMode") === true
+          ? "dark p-0 md:p-4"
+          : "light p-0 md:p-4"
       }
     >
       <App />

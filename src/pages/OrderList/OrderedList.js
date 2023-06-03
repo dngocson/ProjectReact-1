@@ -19,6 +19,7 @@ const formatDate = (dateString) => {
 };
 
 const OrderedList = () => {
+  localStorage.setItem("redirectUrl", window.location.href);
   const data = useSelector((state) => state.ui.orderList);
   const isAuth = useSelector((state) => state.ui.isAuth);
   let renderedList;
@@ -50,8 +51,8 @@ const OrderedList = () => {
 
   return (
     <div className="text-xs md:text-base">
-      <h3>Order History</h3>
-      <p>
+      <p className="text-base md:text-2xl">Order History</p>
+      <p className="text-base md:text-xl">
         Thank you for choosing to shop with us and for your continued support.
         Here is a list of your completed orders
       </p>
