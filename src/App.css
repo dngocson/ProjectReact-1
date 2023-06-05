@@ -5,13 +5,13 @@
     @apply font-poppins;
   }
   h1 {
-    @apply text-4xl;
+    @apply text-2xl font-bold capitalize sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
   }
   h2 {
-    @apply text-3xl;
+    @apply text-xl font-bold capitalize sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl;
   }
   h3 {
-    @apply text-2xl;
+    @apply text-lg font-semibold  sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl;
   }
   h4 {
     @apply text-xl;
@@ -23,11 +23,43 @@
     @apply flex items-center justify-center;
   }
   .navLink {
-    @apply text-sm font-bold md:text-2xl;
+    @apply text-sm font-bold  md:text-2xl;
   }
   .ns_headerIcon {
     @apply text-sm md:text-2xl;
   }
+}
+.LP_container {
+  @apply relative h-full max-w-[90vw] p-0 text-white md:pl-6  md:pr-5 md:pt-5;
+}
+.LP_slider {
+  @apply grid gap-1 overflow-hidden overflow-y-hidden scroll-smooth p-0 transition-all duration-300 md:pb-7 md:pt-7;
+}
+.LP_Item {
+  @apply relative z-0 h-full 
+    origin-center scale-100 overflow-hidden rounded-lg transition-all duration-300 hover:z-10 hover:scale-110 hover:opacity-100;
+}
+
+.LP_slider:hover .LP_Item:not(:hover) {
+  @apply opacity-50;
+}
+.LP_image {
+  @apply aspect-square h-full w-full;
+}
+.LP_btn {
+  @apply absolute top-[50%] z-30 flex h-[60px] w-[30px] origin-center -translate-y-1/2 cursor-pointer items-center justify-center rounded-md bg-black bg-opacity-50 hover:bg-opacity-80 md:h-[100px] md:w-[50px];
+}
+.LP_icon {
+  @apply text-base opacity-70 transition-all duration-300 md:text-3xl;
+}
+.LP_btn:hover .LP_icon {
+  @apply scale-125 opacity-100;
+}
+.LP_price {
+  @apply absolute bottom-0 hidden w-full bg-slate-400 px-8 text-center transition-all duration-300;
+}
+.LP_Item:hover .LP_price {
+  @apply hidden md:block;
 }
 .cluster-icon {
   background-color: #333;

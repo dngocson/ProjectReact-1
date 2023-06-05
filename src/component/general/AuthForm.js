@@ -122,9 +122,9 @@ const AuthForm = ({ isSummiting, errors }) => {
           </button>
         </div>
       </Form>
-      <div className=" flex w-full items-center justify-center p-2 text-base md:text-xl">
+      <div className=" flex w-full items-center justify-center gap-2 rounded-lg p-1 text-sm dark:bg-white">
         {isLogin && (
-          <div className="flex items-center justify-center gap-2">
+          <div className="flex items-center justify-center gap-2 rounded-lg dark:bg-white md:text-xl">
             <p>Not a members?</p>
             <NavLink
               className=" font-bold text-blue-500 hover:text-blue-700 "
@@ -135,7 +135,7 @@ const AuthForm = ({ isSummiting, errors }) => {
           </div>
         )}
         {!isLogin && (
-          <div className="flex w-full items-center justify-center gap-2 rounded-lg dark:bg-white">
+          <div className="flex w-full items-center justify-center gap-2 rounded-lg p-1 dark:bg-white md:text-xl">
             <p>Already have an account?</p>
             <NavLink
               className=" font-bold text-blue-500 hover:text-blue-700"

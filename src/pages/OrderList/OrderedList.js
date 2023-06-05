@@ -51,8 +51,8 @@ const OrderedList = () => {
 
   return (
     <div className="text-xs md:text-base">
-      <p className="text-base md:text-2xl">Order History</p>
-      <p className="text-base md:text-xl">
+      <h2>Order History</h2>
+      <p className="my-2 text-sm md:text-xl">
         Thank you for choosing to shop with us and for your continued support.
         Here is a list of your completed orders
       </p>

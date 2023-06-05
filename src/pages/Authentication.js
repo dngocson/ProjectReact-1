@@ -8,15 +8,25 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigate, useNavigation, useActionData } from "react-router-dom";
+////////////////////
+function getPathnameFromUrl(url) {
+  let a = document.createElement("a");
+  a.href = url;
+  return a.pathname;
+}
+
+/////////////////////
 function Authentication() {
   const navigate = useNavigate();
   const navigation = useNavigation();
   const isSummiting = navigation.state === "submitting";
   const errors = useActionData();
+  const redirectUrl = localStorage.getItem("redirectUrl") || "/";
+  let pathname = getPathnameFromUrl(redirectUrl);
   const signInWithGoogleHandler = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-      navigate(-1);
+      navigate(pathname);
     } catch (error) {
       console.error(error.message);
     }

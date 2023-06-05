@@ -16,7 +16,7 @@ import {
   getOrderListFromFirestore,
 } from "./store/cartDataFireStore";
 import ErrorPage from "./pages/Error";
-import LandingPage from "./pages/LandingPage";
+import LandingPage from "./pages/LandingPage/LandingPage";
 let isInitial = true;
 const router = createBrowserRouter([
   {

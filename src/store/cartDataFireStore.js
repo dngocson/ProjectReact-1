@@ -15,6 +15,7 @@ const cartCollection = collection(db, "Cart");
 export const sendCartDataToFireStore = () => {
   return async (dispatch, getState) => {
     const state = getState();
+    if (!state.ui.isAuth) return;
     const { totalAmount, totalQuantity } = state.cart;
     const cartItems = state.cart.items || [];
     const currentId = state.ui.uid;

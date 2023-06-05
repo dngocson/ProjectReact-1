@@ -11,10 +11,10 @@ const NavigationButton = ({ desc, label }) => {
       {
         <NavLink
           to={desc}
-          className=" navLink dark:hover:text-sky-500 dark:aria-[current=page]:text-sky-400"
+          className="navLink transition-all duration-200  dark:hover:text-sky-500 dark:aria-[current=page]:text-sky-400"
           onClick={onClickHandler}
         >
-          {label}
+          <p className="dark:hover:scale-105">{label}</p>
         </NavLink>
       }
     </li>

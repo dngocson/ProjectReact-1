@@ -1,6 +1,7 @@
 import Categories from "./Categories";
 import ListOfProduct from "./ListOfProduct";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 const categoryArray = [
   {
     name: `Men's clothing`,
@@ -25,7 +26,9 @@ const categoryArray = [
 ];
 
 function HomePage() {
-  const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   localStorage.setItem("redirectUrl", window.location.href);
   return (
     <div className=" rounded-2xl bg-slate-400 p-4 md:mx-auto md:w-full md:rounded-2xl md:px-4 md:py-2">

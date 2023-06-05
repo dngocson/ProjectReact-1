@@ -53,7 +53,7 @@ const ImageSlider = () => {
       <div className="translate-y=[-50%] absolute left-5 top-[50%] hidden -translate-x-0 cursor-pointer rounded-full bg-black/30 text-2xl text-white group-hover:block">
         <BsChevronCompactLeft onClick={prevSlide} size={30} />
       </div>
-      <div className="translate-y=[-50%] absolute right-5 top-[50%] hidden -translate-x-0 cursor-pointer rounded-full bg-black/30 text-2xl text-white group-hover:block">
+      <div className="translate-y=[-50%] absolute  top-[50%] hidden -translate-x-0 cursor-pointer rounded-full bg-black/30 text-2xl text-white group-hover:block md:right-5">
         <BsChevronCompactRight onClick={nextSlide} size={30} />
       </div>
       <div className="flex justify-center px-2">
