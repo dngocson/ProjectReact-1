@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigate, useNavigation, useActionData } from "react-router-dom";
+import { useSelector } from "react-redux";
 ////////////////////
 function getPathnameFromUrl(url) {
   let a = document.createElement("a");
@@ -17,6 +18,7 @@ function getPathnameFromUrl(url) {
 
 /////////////////////
 function Authentication() {
+  const isDark = useSelector((state) => state.ui.isDark);
   const navigate = useNavigate();
   const navigation = useNavigation();
   const isSummiting = navigation.state === "submitting";
@@ -39,12 +41,14 @@ function Authentication() {
       </p>
       <AuthForm isSummiting={isSummiting} errors={errors} />
       <div className="mt-4 flex flex-col items-center justify-end gap-2 self-center">
-        <p className="text-base md:text-xl">have a google account?</p>
+        <p className="text-base uppercase text-pink-600 dark:text-green-400 md:text-2xl">
+          have a google account?
+        </p>
         <button
-          className="m-1 w-fit self-center rounded-full bg-white hover:bg-indigo-600"
+          className="m-1 w-fit self-center rounded-full bg-black hover:bg-blue-600 dark:bg-white dark:hover:bg-green-600"
           onClick={signInWithGoogleHandler}
         >
-          <AiOutlineGoogle color="black" size={40} />
+          <AiOutlineGoogle color={isDark ? "white" : "black"} size={40} />
         </button>
       </div>
     </div>

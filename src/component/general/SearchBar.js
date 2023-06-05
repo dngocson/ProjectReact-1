@@ -52,12 +52,11 @@ function SearchBar() {
             ref={inputRef}
             onBlur={onBlurHandler}
           ></input>
-          <button
-            className="g-blue-300 ml-2 hidden rounded-lg border border-blue-700 bg-blue-700 p-2.5 text-sm font-medium text-white hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 md:visible md:block"
-            type="submit"
-          >
-            <BiSearch />
-          </button>
+          <div className=" ml-2 hidden rounded-lg border border-gray-300 bg-sky-300  p-2.5 text-sm font-medium text-black hover:bg-sky-500  dark:bg-blue-600 dark:text-white dark:hover:bg-blue-700 dark:focus:ring-blue-800 md:visible md:block">
+            <button type="submit">
+              <BiSearch />
+            </button>
+          </div>
         </div>
       </form>
       <div className="absolute top-10 z-10 w-72">
@@ -75,7 +74,7 @@ function SearchBar() {
           .map((item) => (
             <p
               onClick={() => clickTextHandler(item.title)}
-              className="left-0 cursor-pointer border border-black dark:bg-slate-700 dark:hover:bg-slate-500 dark:hover:text-green-400"
+              className="left-0 cursor-pointer border border-black bg-white hover:text-red-400   dark:bg-slate-700 dark:hover:bg-slate-500 dark:hover:text-green-400"
               key={item.title}
             >
               {item.title}

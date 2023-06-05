@@ -33,7 +33,7 @@ function RootLayout() {
       {toTopButton && (
         <button
           onClick={toTop}
-          className="fixed bottom-9 right-9 z-50 rounded-full bg-white p-2 text-xl text-black md:text-3xl"
+          className="fixed bottom-9 right-9 z-20 rounded-full bg-blue-500 p-2 text-xl dark:bg-white dark:text-black md:text-3xl"
         >
           <AiOutlineToTop />
         </button>

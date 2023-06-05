@@ -55,16 +55,16 @@ const OrderedItem = ({ item }) => {
         </div>
         <div className="col-span-2 hidden h-full flex-col items-center justify-center sm:flex lg:col-span-1">
           <button
-            className=" m-1 w-full self-end rounded-xl bg-[#64748b]
-             p-1  duration-300 hover:bg-indigo-600 md:m-2 md:p-2 
+            className=" m-1 w-full self-end rounded-xl bg-blue-600 p-1 duration-300
+             hover:bg-blue-500  dark:bg-[#64748b] dark:hover:bg-indigo-600 md:m-2 md:p-2 
              md:text-base"
             onClick={buyAgainHandler}
           >
             Buy again
           </button>
           <Link
-            className=" m-1 flex w-full items-center justify-center self-end rounded-xl bg-[#64748b] p-1 
-             duration-300 hover:bg-indigo-600 md:m-2 md:p-2 md:text-base"
+            className=" m-1 flex w-full items-center justify-center self-end rounded-xl bg-blue-600 p-1 duration-300 hover:bg-blue-500 
+             dark:bg-[#64748b] dark:hover:bg-indigo-600 md:m-2 md:p-2 md:text-base"
             to={`/product/detail/${item.id}`}
           >
             <span>View Product</span>

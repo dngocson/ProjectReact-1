@@ -178,26 +178,29 @@ function CityDistrictForm({ setCity, setDistrict }) {
   }
 
   return (
-    <div>
-      <label className="text-base md:text-2xl">
-        City:
-        <select value={selectedCity} required onChange={handleCityChange}>
-          <option value="">--City--</option>
-          {cityOptions}
-        </select>
-      </label>
-      <br />
-      <label className="text-base md:text-2xl">
-        District:
-        <select
-          value={selectedDistrict}
-          required
-          onChange={handleDistrictChange}
-        >
-          <option value="">--District--</option>
-          {districtOptions}
-        </select>
-      </label>
+    <div className=" flex flex-col gap-2">
+      <div>
+        <label className="text-base md:text-2xl">
+          City:
+          <select value={selectedCity} required onChange={handleCityChange}>
+            <option value="">--City--</option>
+            {cityOptions}
+          </select>
+        </label>
+      </div>
+      <div>
+        <label className="text-base md:text-2xl">
+          District:
+          <select
+            value={selectedDistrict}
+            required
+            onChange={handleDistrictChange}
+          >
+            <option value="">--District--</option>
+            {districtOptions}
+          </select>
+        </label>
+      </div>
     </div>
   );
 }

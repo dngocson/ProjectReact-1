@@ -9,6 +9,7 @@ const uiSlice = createSlice({
     orderList: [],
     shippingInfo: { address: "", phoneNumber: "", city: "", district: "" },
     displayNav: false,
+    isDark: false,
   },
   reducers: {
     setDisplayCart(state) {
@@ -50,6 +51,9 @@ const uiSlice = createSlice({
     },
     setDisplaynav(state) {
       state.displayNav = !state.displayNav;
+    },
+    setChangeMode(state) {
+      state.isDark = !state.isDark;
     },
   },
 });

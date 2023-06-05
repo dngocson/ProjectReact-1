@@ -49,7 +49,7 @@ const Cart = () => {
     );
   };
   return (
-    <div className="fixed left-[50%] top-[50%] z-40 grid h-full w-full -translate-x-1/2 -translate-y-1/2 transform grid-cols-5 grid-rows-4 overflow-scroll bg-white text-2xl md:grid-cols-7 xl:h-5/6 xl:w-2/3">
+    <div className="fixed left-[50%] top-[50%] z-40 grid h-full w-full -translate-x-1/2 -translate-y-1/2 transform grid-cols-5 grid-rows-4 overflow-scroll bg-white text-2xl dark:bg-gray-700 dark:text-white md:grid-cols-7 xl:h-5/6 xl:w-2/3">
       <div className="col-span-5 row-span-3">
         <div className="flex items-center justify-between border-b p-4">
           <p className="text-base md:text-2xl">Shopping Cart</p>
@@ -86,7 +86,7 @@ const Cart = () => {
         </div>
         <div className="m-7 text-[#6467d8]">
           <button
-            className="flex items-center justify-center text-base md:text-2xl"
+            className="flex items-center justify-center text-base dark:text-green-500 md:text-2xl"
             onClick={continueShopping}
           >
             <BsArrowBarLeft />
@@ -94,7 +94,7 @@ const Cart = () => {
           </button>
         </div>
       </div>
-      <div className=" col-span-5 flex h-full flex-col bg-[#f6f6f6] md:col-span-2 md:row-span-4">
+      <div className=" col-span-5 flex h-full flex-col bg-[#f6f6f6] dark:bg-slate-400 dark:text-black md:col-span-2 md:row-span-4">
         <div className="flex justify-between border-b p-4">
           <p className="text-base md:text-2xl">Order Summary</p>
           <p className=" block text-base md:hidden md:text-2xl">Total Amount</p>
@@ -103,12 +103,12 @@ const Cart = () => {
           <p className="text-base md:text-2xl">{totalQuantity} Item</p>
           <p className="text-base md:text-2xl">{totalPrice.toFixed(2)}$</p>
         </div>
-        <div className=" bg-[#f6f6f6] px-4 md:pt-6">
+        <div className=" bg-[#f6f6f6] px-4 dark:bg-slate-400 md:pt-6">
           <p className="text-xl">SHIPPING</p>
           <p className="text-base">Please input your information</p>
           <form
             onSubmit={sendDataHandler}
-            className="flex flex-col bg-[#f6f6f6]"
+            className="flex flex-col bg-[#f6f6f6] dark:bg-slate-400"
           >
             <CityDistrictForm />
             <p className="text-base">Address:</p>
@@ -131,12 +131,9 @@ const Cart = () => {
               defaultValue={userPhoneNumber}
             ></textarea>
             {hasItems ? (
-              <button
-                className="mt-4 w-56 self-center py-3 text-xl font-semibold duration-300 dark:bg-blue-300 dark:hover:bg-blue-500 md:w-full"
-                type="submit"
-              >
-                CHECK OUT
-              </button>
+              <div className="w-56 self-center bg-blue-700 p-2 text-center text-xl font-semibold text-white duration-300 hover:bg-blue-500 dark:bg-blue-300 dark:text-black dark:hover:bg-blue-500 md:mt-4 md:w-full md:py-3">
+                <button type="submit">CHECK OUT</button>
+              </div>
             ) : (
               <></>
             )}

@@ -57,7 +57,7 @@ function DisplayPosition({
     [map]
   );
   return (
-    <div className="col-span-1 overflow-hidden rounded-2xl p-4 text-xs dark:bg-zinc-700 sm:text-sm md:col-span-4 md:text-base lg:col-span-3  xl:text-xl">
+    <div className="col-span-1 overflow-hidden rounded-2xl bg-blue-200 p-4 text-xs dark:bg-zinc-700 sm:text-sm md:col-span-4 md:text-base lg:col-span-3  xl:text-xl">
       <p>
         Please find the location of our stores below and choose the one closest
         to you.
@@ -69,7 +69,7 @@ function DisplayPosition({
               Our {location.order}: <span>{location.popup}</span>
             </p>
             <button
-              className="rounded-xl bg-[#64748b] p-2 duration-300 hover:bg-indigo-600"
+              className="rounded-xl bg-blue-500 p-2 duration-300 hover:bg-blue-700 dark:bg-[#64748b] dark:hover:bg-indigo-600"
               onClick={() => onClick(location)}
             >
               View on map
@@ -87,10 +87,10 @@ function DisplayPosition({
         )}
 
         {!errorMessage && userlocation.length > 0 && (
-          <p>
+          <p className=" pt-2">
             Click{" "}
             <button
-              className="text-blue-500 hover:text-blue-700"
+              className="text-pink-800 hover:scale-110 hover:text-pink-400"
               onClick={() => moveToUserPos(userlocation)}
             >
               HERE

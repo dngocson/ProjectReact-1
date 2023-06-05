@@ -35,7 +35,7 @@ const OrderedList = () => {
           in.
         </p>
         <Link
-          className="m-2 inline-block rounded-2xl bg-gray-600 p-2 duration-300 hover:bg-indigo-600"
+          className="m-2 inline-block rounded-2xl bg-blue-700 p-2 duration-300 hover:bg-blue-500 dark:bg-gray-600 dark:hover:bg-indigo-600"
           to={"/auth?mode=signup"}
         >
           Click me
@@ -60,14 +60,14 @@ const OrderedList = () => {
         {renderedList.map((order, index) => (
           <li
             key={index}
-            className="my-2 rounded-xl bg-slate-500 p-2 md:my-5 md:p-4"
+            className="my-2 rounded-xl bg-blue-300 p-2 text-black dark:bg-slate-500 dark:text-white md:my-5 md:p-4"
           >
             <div className="">
-              <p className="text-xs text-white md:text-2xl">
+              <p className="text-xs text-pink-600 dark:text-orange-300 md:text-2xl">
                 Order number: #{index + 1}, placed on{" "}
                 {formatDate(order.createAt)}
               </p>
-              <div className="grid grid-cols-5 text-center text-xl text-white sm:grid-cols-7 md:p-4">
+              <div className="grid grid-cols-5 text-center text-xl text-black dark:text-white sm:grid-cols-7 md:p-4">
                 <p className="col-span-2 text-xs md:text-2xl">
                   PRODUCTS DETAILS
                 </p>
@@ -83,8 +83,8 @@ const OrderedList = () => {
                   <OrderedItem key={index} item={item} index={index + 1} />
                 ))}
               </ul>
-              <div className="mt-1 rounded-xl p-2 text-xs text-black dark:bg-gray-800 dark:text-white md:mt-3 md:p-4 md:text-2xl">
-                <p>
+              <div className="mt-1 rounded-xl bg-emerald-200 p-2 text-xs text-black dark:bg-gray-700 dark:text-white md:mt-3 md:p-4 md:text-2xl">
+                <p className="text-pink-600 dark:text-orange-300">
                   TOTAL : {order.totalQuantity} items -{" "}
                   {order.totalAmount.toFixed(2)}$
                 </p>

@@ -62,7 +62,9 @@ const ImageSlider = () => {
             <RxDotFilled
               onClick={() => gotoSlide(index)}
               className={`${
-                currentIndex === index ? "dark:text-sky-400" : "dark:text-white"
+                currentIndex === index
+                  ? "text-blue-600 dark:text-sky-400"
+                  : "text-zinc-800 dark:text-white"
               }`}
             />
           </div>

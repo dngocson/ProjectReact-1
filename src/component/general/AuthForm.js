@@ -23,7 +23,7 @@ const AuthForm = ({ isSummiting, errors }) => {
     text = "Submitting";
   }
   return (
-    <div className="mx-auto rounded-2xl p-1 text-black dark:bg-slate-600 md:p-4">
+    <div className="mx-auto rounded-2xl bg-sky-200 p-1 text-black dark:bg-slate-600 md:p-4">
       <Form
         method="post"
         className="flex flex-col items-center gap-2 p-2 md:gap-4 md:p-9"
@@ -35,7 +35,7 @@ const AuthForm = ({ isSummiting, errors }) => {
           <div className="group relative w-72 md:w-80 lg:w-96">
             <label
               htmlFor="email"
-              className="block w-full pb-1 text-sm font-medium transition-all duration-200 ease-in-out group-focus-within:text-blue-400 md:text-lg"
+              className="block w-full pb-1 text-sm font-medium transition-all duration-200 ease-in-out group-focus-within:text-pink-600 dark:group-focus-within:text-blue-400 md:text-lg"
             >
               Your email
             </label>
@@ -60,7 +60,7 @@ const AuthForm = ({ isSummiting, errors }) => {
             <label
               htmlFor="password"
               className="block w-full pb-1 
-              text-sm font-medium transition-all duration-200 ease-in-out group-focus-within:text-blue-400 md:text-lg"
+              text-sm font-medium transition-all duration-200 ease-in-out group-focus-within:text-pink-600 dark:group-focus-within:text-blue-400 md:text-lg"
             >
               Your password
             </label>
@@ -88,7 +88,7 @@ const AuthForm = ({ isSummiting, errors }) => {
               <label
                 htmlFor="confirmPassword"
                 className="block w-full pb-1 text-sm 
-                font-medium transition-all duration-200 ease-in-out group-focus-within:text-blue-400 md:text-lg"
+                font-medium transition-all duration-200 ease-in-out group-focus-within:text-pink-600 dark:group-focus-within:text-blue-400 md:text-lg"
               >
                 Password Confirmation
               </label>
@@ -116,18 +116,18 @@ const AuthForm = ({ isSummiting, errors }) => {
         <div className="self-end">
           <button
             disabled={isSummiting}
-            className="rounded  px-4 py-2 text-white transition duration-300 hover:-translate-y-1  dark:bg-blue-300 dark:hover:bg-blue-500"
+            className="rounded  bg-blue-600 px-4 py-2 text-white transition duration-300 hover:-translate-y-1 hover:bg-blue-500  dark:bg-blue-300 dark:hover:bg-blue-500"
           >
             {text}
           </button>
         </div>
       </Form>
-      <div className=" flex w-full items-center justify-center gap-2 rounded-lg p-1 text-sm dark:bg-white">
+      <div className=" flex w-full items-center justify-center gap-2 rounded-lg bg-yellow-300 p-1 text-sm dark:bg-white">
         {isLogin && (
-          <div className="flex items-center justify-center gap-2 rounded-lg dark:bg-white md:text-xl">
+          <div className="flex items-center justify-center gap-2 rounded-lg  dark:bg-white md:text-xl">
             <p>Not a members?</p>
             <NavLink
-              className=" font-bold text-blue-500 hover:text-blue-700 "
+              className=" font-bold text-pink-400 hover:text-pink-600 dark:text-blue-500 dark:hover:text-blue-700 "
               to={`?mode=${isLogin ? "signup" : "login"}`}
             >
               Create a new Account
@@ -138,7 +138,7 @@ const AuthForm = ({ isSummiting, errors }) => {
           <div className="flex w-full items-center justify-center gap-2 rounded-lg p-1 dark:bg-white md:text-xl">
             <p>Already have an account?</p>
             <NavLink
-              className=" font-bold text-blue-500 hover:text-blue-700"
+              className=" font-bold text-pink-400 hover:text-pink-600 dark:text-blue-500 dark:hover:text-blue-700"
               to={`?mode=${isLogin ? "signup" : "login"}`}
             >
               Sign in

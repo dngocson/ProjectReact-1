@@ -37,6 +37,7 @@ function Header() {
   const [darkMode, setDarkMode] = useState(undefined);
   const switchDarkMode = () => {
     setDarkMode(!darkMode);
+    dispatch(uiActions.setChangeMode());
   };
   useEffect(() => {
     if (darkMode) {
@@ -68,7 +69,7 @@ function Header() {
         <div className="flex items-center justify-between gap-2 py-2">
           <Link
             to={"/"}
-            className=" text-2xl font-semibold md:text-3xl md:font-bold"
+            className=" text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl md:font-bold"
           >
             MyShop
           </Link>
@@ -76,7 +77,7 @@ function Header() {
           <div className=" ns_center gap-2 ">
             <HeaderCartButton />
             <div
-              className=" rounded-full p-2 transition duration-300 dark:bg-slate-500 dark:hover:bg-slate-400"
+              className=" rounded-full bg-sky-300  p-2 transition duration-300 hover:bg-sky-500 dark:bg-slate-500 dark:hover:bg-slate-400"
               onClick={switchDarkMode}
             >
               {!darkMode ? (
@@ -85,23 +86,23 @@ function Header() {
                 <BsFillSunFill className="ns_headerIcon" />
               )}
             </div>
-            <p className="hidden dark:text-white md:block">{displayTest}</p>
+            <p className="hidden dark:text-white  md:block">{displayTest}</p>
             <div className="md:hidden">
               <button
                 onClick={setDisplayNavHandler}
-                className="ns_center rounded-full p-2 transition duration-300 dark:bg-slate-500 dark:hover:bg-slate-400 "
+                className="ns_center rounded-full bg-sky-300 p-2 transition duration-300 hover:bg-sky-500  dark:bg-slate-500 dark:hover:bg-slate-400 "
               >
-                <BsListUl className="ns_headerIcon" />
+                <BsListUl className="ns_headerIcon " />
               </button>
             </div>
-            <div className="ns_center rounded-full p-2 transition duration-300 dark:bg-slate-500 dark:hover:bg-slate-400">
+            <div className="ns_center rounded-full bg-sky-300 p-2 transition duration-300 hover:bg-sky-500 dark:bg-slate-500 dark:hover:bg-slate-400">
               {!isAuth && (
                 <Link className="" to={"auth?mode=signup"}>
                   <AiOutlineLogin className="ns_headerIcon" />
                 </Link>
               )}
               {isAuth && (
-                <button className=" " onClick={signOutHandler}>
+                <button onClick={signOutHandler}>
                   <AiOutlineLogout className="ns_headerIcon" />
                 </button>
               )}

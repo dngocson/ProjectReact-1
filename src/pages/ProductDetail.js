@@ -41,10 +41,13 @@ const ProductDetail = () => {
   let size = 5;
   let myArray = Array.from({ length: size }, (v, i) => i);
   let RatingArray = Array.from({ length: rating }, (v, i) => i);
+
+  //////////////////// DARKMODE
+  const isDark = useSelector((state) => state.ui.isDark);
   return (
     <>
-      <div className="grid grid-cols-1 gap-5 rounded-2xl p-4 text-sm dark:bg-slate-400 sm:grid-cols-2 sm:text-base md:text-lg lg:text-xl xl:text-2xl">
-        <div className="order-2 h-full overflow-hidden rounded-2xl p-5 dark:bg-slate-800 dark:text-white sm:order-1">
+      <div className="grid grid-cols-1 gap-5 rounded-2xl bg-sky-300 p-4 text-sm dark:bg-slate-400 sm:grid-cols-2 sm:text-base md:text-lg lg:text-xl xl:text-2xl">
+        <div className="order-2 h-full overflow-hidden rounded-2xl bg-blue-200 p-5 dark:bg-slate-800 dark:text-white sm:order-1">
           <p className="text-base sm:text-lg md:grid-cols-2 md:text-xl lg:text-2xl xl:text-3xl">
             Categories: {currentProduct.category}
           </p>
@@ -56,12 +59,24 @@ const ProductDetail = () => {
             <div className="relative flex">
               <div className="absolute left-2 top-0 flex items-center justify-center md:top-1">
                 {myArray.map((index, i) => (
-                  <AiOutlineStar key={i} style={{ color: "white" }} size={25} />
+                  <AiOutlineStar
+                    key={i}
+                    style={{
+                      color: `${isDark === true ? "blue" : "yellow"}`,
+                    }}
+                    size={25}
+                  />
                 ))}
               </div>
               <div className="absolute left-2 top-0 flex items-center justify-center md:top-1">
                 {RatingArray.map((index, i) => (
-                  <AiFillStar key={i} style={{ color: "white" }} size={25} />
+                  <AiFillStar
+                    key={i}
+                    style={{
+                      color: `${isDark === true ? "blue" : "yellow"}`,
+                    }}
+                    size={25}
+                  />
                 ))}
               </div>
             </div>
@@ -70,7 +85,7 @@ const ProductDetail = () => {
           <div className="flex w-full items-center justify-center md:justify-start">
             <button
               onClick={addtoCartHandler}
-              className="mt-4 w-full py-3 font-semibold duration-300 dark:bg-blue-300 dark:hover:bg-blue-500 md:w-72"
+              className="mt-4 w-full bg-blue-700 py-3 font-semibold text-white duration-300 hover:bg-blue-500  dark:bg-blue-300 dark:hover:bg-blue-500 md:w-72"
             >
               Add to Cart
             </button>

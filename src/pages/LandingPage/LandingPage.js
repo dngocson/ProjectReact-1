@@ -77,12 +77,11 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
-      <h3>Discover all of our products</h3>
-      <Link
-        to={"/allProduct"}
-        className="my-3 inline-block animate-bounce rounded-2xl p-2 dark:bg-green-400"
-      >
-        <h4 className="inline-block">Click here</h4>
+      <h3 className="mt-2 md:mt-5">Discover all of our products</h3>
+      <Link to={"/allProduct"} className="">
+        <h4 className="my-3 inline-block  animate-bounce rounded-2xl bg-blue-400 p-2 hover:bg-blue-500 dark:bg-green-400 dark:hover:bg-green-500">
+          Click here
+        </h4>
       </Link>
     </div>
   );

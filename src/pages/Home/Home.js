@@ -31,12 +31,12 @@ function HomePage() {
   }, []);
   localStorage.setItem("redirectUrl", window.location.href);
   return (
-    <div className=" rounded-2xl bg-slate-400 p-4 md:mx-auto md:w-full md:rounded-2xl md:px-4 md:py-2">
-      <ul className="flex flex-col gap-4 md:gap-0">
+    <div className=" rounded-2xl bg-sky-300 p-4 dark:bg-slate-400 md:mx-auto md:w-full md:rounded-2xl md:px-4 md:py-2">
+      <ul className="flex flex-col gap-4 md:gap-0  ">
         {categoryArray.map((categorie, index) => (
           <li
             key={categorie.name}
-            className=" flex flex-col gap-1 rounded-2xl bg-slate-900 sm:gap-4 md:my-2 md:flex-row md:gap-4 md:p-4"
+            className=" flex flex-col gap-1 rounded-2xl bg-sky-100 dark:bg-slate-900 sm:gap-4 md:my-2 md:flex-row md:gap-4 md:p-4"
           >
             <Categories imgSrc={categorie.imgSrc} name={categorie.name} />
             <ListOfProduct name={categorie.name.toLowerCase()} />
