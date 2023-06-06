@@ -8,11 +8,17 @@ This project is an e-commerce website with several key features, including dark 
 
 ## Features
 Dark Mode: Users can switch between light and dark mode for a more comfortable browsing experience.
+
 User Registration and Authentication: Users can create an account and log in using Firebase authentication.
+
 Cart Management: Users can add and remove items from their cart.
+
 Map with Geolocation API and Leaflet Library: The website includes a map that utilizes the geolocation API and Leaflet library to display location information.
+
 Item Searching: Users can search for items on the website.
+
 Responsive Design: The website is designed to be responsive and adapt to different screen sizes.
+
 Firebase Firestore: The data for the website is stored in Firebase Firestore.
 
 
