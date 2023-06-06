@@ -178,7 +178,7 @@ function CityDistrictForm({ setCity, setDistrict }) {
   }
 
   return (
-    <div className=" flex flex-col gap-1 md:gap-2">
+    <div className=" flex flex-col gap-1 md:gap-2 ">
       <div>
         <label className="text-base md:text-2xl">
           City:

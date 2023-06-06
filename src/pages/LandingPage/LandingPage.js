@@ -16,7 +16,7 @@ const LandingPage = () => {
       item.category === "women's clothing"
   );
   const electronic = shopItem.filter((item) => item.category === "electronics");
-  console.log(electronic);
+
   return (
     <div className="mx-auto  min-h-[100vh] max-w-[100rem] overflow-hidden p-4">
       <div className="flex flex-col gap-5">
