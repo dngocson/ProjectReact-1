@@ -1,3 +1,28 @@
+# E-commerce Website
+This project is an e-commerce website with several key features, including dark mode, user registration and authentication with Firebase, the ability to add and remove items from a cart, a map with geolocation API and Leaflet library integration, item searching, and responsive design. The data for the website is stored in Firebase Firestore.
+
+## Technologies Used
+### ReactJS
+### Redux/Redux Toolkit
+### Tailwind CSS
+
+## Features
+Dark Mode: Users can switch between light and dark mode for a more comfortable browsing experience.
+
+User Registration and Authentication: Users can create an account and log in using Firebase authentication.
+
+Cart Management: Users can add and remove items from their cart.
+
+Map with Geolocation API and Leaflet Library: The website includes a map that utilizes the geolocation API and Leaflet library to display location information.
+
+Item Searching: Users can search for items on the website.
+
+Responsive Design: The website is designed to be responsive and adapt to different screen sizes.
+
+Firebase Firestore: The data for the website is stored in Firebase Firestore.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
