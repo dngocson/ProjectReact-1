@@ -180,7 +180,7 @@ function CityDistrictForm({ setCity, setDistrict }) {
   return (
     <div className=" flex flex-col gap-1 md:gap-2 ">
       <div>
-        <label className="text-base md:text-2xl">
+        <label className="text-base md:text-xl">
           City:
           <select value={selectedCity} required onChange={handleCityChange}>
             <option value="">--City--</option>
@@ -189,7 +189,7 @@ function CityDistrictForm({ setCity, setDistrict }) {
         </label>
       </div>
       <div>
-        <label className="text-base md:text-2xl">
+        <label className="text-base md:text-xl">
           District:
           <select
             value={selectedDistrict}

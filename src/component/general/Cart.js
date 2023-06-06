@@ -104,22 +104,30 @@ const Cart = () => {
       </div>
       <div className=" col-span-5 flex h-full flex-col bg-[#f6f6f6] dark:bg-slate-400 dark:text-black md:col-span-2 md:row-span-4">
         <div className="flex justify-between border-b p-4">
-          <p className="text-base md:text-2xl">Order Summary</p>
-          <p className=" block text-base md:hidden md:text-2xl">Total Amount</p>
+          <p className="text-base font-semibold md:text-2xl md:font-normal">
+            Order Summary
+          </p>
+          <p className=" block text-base font-semibold md:hidden md:text-2xl md:font-normal">
+            Total Amount
+          </p>
         </div>
         <div className="flex w-full justify-between px-4">
-          <p className="text-base md:text-2xl">{totalQuantity} Item</p>
-          <p className="text-base md:text-2xl">{totalPrice.toFixed(2)}$</p>
+          <p className="text-base font-semibold md:text-2xl">
+            {totalQuantity} Item
+          </p>
+          <p className="text-base font-semibold md:text-2xl">
+            {totalPrice.toFixed(2)}$
+          </p>
         </div>
         <div className=" bg-[#f6f6f6] px-4 dark:bg-slate-400 md:pt-6">
-          <p className="text-xl">SHIPPING</p>
-          <p className="text-base">Please input your information</p>
+          <p className="text-base font-medium md:text-xl">SHIPPING</p>
+          <p className="text-base md:text-xl">Please input your information</p>
           <form
             onSubmit={sendDataHandler}
             className="flex flex-col bg-[#f6f6f6] dark:bg-slate-400"
           >
             <CityDistrictForm />
-            <p className="text-base">Address:</p>
+            <p className="text-base md:text-xl">Address:</p>
             <textarea
               type="text"
               required
@@ -130,7 +138,7 @@ const Cart = () => {
               onChange={(e) => inputAddressHandler(e.target.value)}
               defaultValue={userAddress}
             ></textarea>
-            <p className="text-base">Phone number:</p>
+            <p className="text-base md:text-xl">Phone number:</p>
             <textarea
               placeholder="Phone number"
               onChange={(e) => inputPhoneNumberHandler(e.target.value)}
