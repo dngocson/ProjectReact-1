@@ -6,7 +6,7 @@ ReactJS
 Redux/Redux Toolkit
 Tailwind CSS
 
-### Features
+## Features
 Dark Mode: Users can switch between light and dark mode for a more comfortable browsing experience.
 User Registration and Authentication: Users can create an account and log in using Firebase authentication.
 Cart Management: Users can add and remove items from their cart.
