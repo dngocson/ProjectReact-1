@@ -9,6 +9,7 @@ import { getOrderListFromFirestore } from "../../store/cartDataFireStore";
 import { BsArrowBarLeft } from "react-icons/bs";
 import { useState } from "react";
 import CityDistrictForm from "./CityDistrictForm";
+import { AiFillCloseSquare } from "react-icons/ai";
 const Cart = () => {
   const navigate = useNavigate();
   const cartItems = useSelector((state) => state.cart.items);
@@ -34,7 +35,6 @@ const Cart = () => {
   };
   const continueShopping = () => {
     dispatch(uiActions.setDisplayCart());
-    navigate("/allProduct");
   };
   const inputAddressHandler = (address) => {
     setAddess(address);
@@ -48,12 +48,20 @@ const Cart = () => {
       uiActions.setShippingAddress({ phoneNumber, address, city, district })
     );
   };
+  const closeCartHandler = () => {
+    dispatch(uiActions.setDisplayCart());
+  };
   return (
     <div className="fixed left-[50%] top-[50%] z-40 grid h-full w-full -translate-x-1/2 -translate-y-1/2 transform grid-cols-5 grid-rows-4 overflow-scroll bg-white text-2xl dark:bg-gray-700 dark:text-white md:grid-cols-7 xl:h-5/6 xl:w-2/3">
       <div className="col-span-5 row-span-3">
         <div className="flex items-center justify-between border-b p-4">
           <p className="text-base md:text-2xl">Shopping Cart</p>
-          <p className="text-base md:text-2xl">{totalQuantity} items</p>
+          <p className="hidden text-base md:text-2xl xl:block">
+            {totalQuantity} items
+          </p>
+          <button onClick={closeCartHandler} className="block xl:hidden">
+            <AiFillCloseSquare color="red" size={32} />
+          </button>
         </div>
         <div className="grid grid-cols-5 border-b text-center ">
           <p className="col-span-2 text-base md:text-2xl">PRODUCTS DETAILS</p>
@@ -116,7 +124,7 @@ const Cart = () => {
               type="text"
               required
               placeholder="Your address"
-              className="w-full placeholder:text-base focus:outline-none focus:ring-0"
+              className="w-full text-base placeholder:text-base focus:outline-none focus:ring-0"
               rows={4}
               spellCheck={false}
               onChange={(e) => inputAddressHandler(e.target.value)}
@@ -131,7 +139,7 @@ const Cart = () => {
               defaultValue={userPhoneNumber}
             ></textarea>
             {hasItems ? (
-              <div className="w-56 self-center bg-blue-700 p-2 text-center text-xl font-semibold text-white duration-300 hover:bg-blue-500 dark:bg-blue-300 dark:text-black dark:hover:bg-blue-500 md:mt-4 md:w-full md:py-3">
+              <div className="my-4 w-56 self-center bg-blue-700 p-2 text-center text-xl font-semibold text-white duration-300 hover:bg-blue-500 dark:bg-blue-300 dark:text-black dark:hover:bg-blue-500 md:mt-4 md:w-full md:py-3">
                 <button type="submit">CHECK OUT</button>
               </div>
             ) : (

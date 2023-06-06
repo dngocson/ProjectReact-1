@@ -48,7 +48,7 @@ function Authentication() {
           className="m-1 w-fit self-center rounded-full bg-black hover:bg-blue-600 dark:bg-white dark:hover:bg-green-600"
           onClick={signInWithGoogleHandler}
         >
-          <AiOutlineGoogle color={isDark ? "white" : "black"} size={40} />
+          <AiOutlineGoogle color={isDark ? "black" : "white"} size={45} />
         </button>
       </div>
     </div>
