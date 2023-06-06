@@ -1,12 +1,12 @@
-E-commerce Website
+# E-commerce Website
 This project is an e-commerce website with several key features, including dark mode, user registration and authentication with Firebase, the ability to add and remove items from a cart, a map with geolocation API and Leaflet library integration, item searching, and responsive design. The data for the website is stored in Firebase Firestore.
 
-Technologies Used
+## Technologies Used
 ReactJS
 Redux/Redux Toolkit
 Tailwind CSS
 
-Features
+### Features
 Dark Mode: Users can switch between light and dark mode for a more comfortable browsing experience.
 User Registration and Authentication: Users can create an account and log in using Firebase authentication.
 Cart Management: Users can add and remove items from their cart.
