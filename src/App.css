@@ -30,10 +30,10 @@
   }
 }
 .LP_container {
-  @apply relative h-full max-w-[90vw] rounded-2xl bg-slate-200 p-0 text-white dark:bg-indigo-900 md:pl-6  md:pr-5 md:pt-5;
+  @apply relative h-full max-w-[90vw] rounded-2xl bg-slate-200 p-0 py-4 text-white dark:bg-indigo-900 md:pl-6  md:pr-5;
 }
 .LP_slider {
-  @apply grid gap-1 overflow-hidden overflow-y-hidden scroll-smooth p-0 transition-all duration-300 md:pb-7 md:pt-7;
+  @apply grid gap-1 overflow-hidden overflow-y-hidden scroll-smooth p-0 py-2 transition-all duration-300 md:pb-7;
 }
 .LP_Item {
   @apply relative z-0 h-full 

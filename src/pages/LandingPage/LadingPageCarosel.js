@@ -117,12 +117,15 @@ const LadingPageCarosel = ({ items }) => {
   };
 
   return (
-    <div className="LP_container" draggable="false">
+    <div
+      className="LP_container flex items-center justify-center"
+      draggable="false"
+    >
       <div
         ref={sliderRef}
         className="LP_slider"
         style={{
-          gridTemplateColumns: `repeat(${items.length}, minmax(35vh,35vw))`,
+          gridTemplateColumns: `repeat(${items.length}, minmax(32vh,35vh))`,
         }}
         draggable="true"
         onDragStart={onDragStartHandler}

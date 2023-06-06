@@ -53,7 +53,11 @@ const LandingPage = () => {
             eius distinctio odit, magni magnam qui ex perferendis vitae!
           </p>
           <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-            <img className="w-full md:max-w-[90%]" src={wear} alt="wearitems" />
+            <img
+              className="h-full w-full md:max-w-[90%]"
+              src={wear}
+              alt="wearitems"
+            />
             <LadingPageCarosel items={clothes} />
           </div>
         </div>
