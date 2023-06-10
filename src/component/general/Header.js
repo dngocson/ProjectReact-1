@@ -36,7 +36,7 @@ function Header() {
   const isAuth = useSelector((state) => state.ui.isAuth);
   const [darkMode, setDarkMode] = useState(undefined);
   const switchDarkMode = () => {
-    setDarkMode(!darkMode);
+    setDarkMode((darkmode) => !darkMode);
     dispatch(uiActions.setChangeMode());
   };
   useEffect(() => {

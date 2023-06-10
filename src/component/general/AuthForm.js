@@ -7,10 +7,10 @@ const AuthForm = ({ isSummiting, errors }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const showPasswordHandler = () => {
-    setShowPassword(!showPassword);
+    setShowPassword((show) => !show);
   };
   const showConfirmPasswordHandler = () => {
-    setShowConfirmPassword(!showConfirmPassword);
+    setShowConfirmPassword((confirm) => !confirm);
   };
   let text;
   if (isLogin) {

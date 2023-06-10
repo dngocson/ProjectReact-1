@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import LadingPageCarosel from "./LadingPageCarosel";
 import aManImage from "../../assets/img/person.png";
 import shopping from "../../assets/img/pngegg.png";
