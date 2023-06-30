@@ -10,7 +10,7 @@ const ListOfProduct = ({ name }) => {
       {filtredArray.map((product, index) => (
         <li className="" key={index}>
           <Product
-            key={index}
+            key={product.id}
             title={product.title}
             price={product.price}
             id={product.id}

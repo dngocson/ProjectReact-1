@@ -32,6 +32,7 @@ const Cart = () => {
     dispatch(uiActions.setDisplayCart());
     dispatch(getOrderListFromFirestore());
     navigate("/Ordered");
+  
   };
   const continueShopping = () => {
     dispatch(uiActions.setDisplayCart());
